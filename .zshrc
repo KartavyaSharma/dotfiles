@@ -147,7 +147,8 @@ alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
 
 # Dotfile backup
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && config push"
 
 # Tmux
 alias tls="tmux list"
