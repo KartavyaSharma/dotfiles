@@ -141,13 +141,16 @@ alias ipy="ipython"
 alias lg="lazygit"
 alias de="deactivate"
 alias t="cd ~/Downloads && ./taskwarrior-tui && cd ~/Downloads/"
-alias s="spt"
+# alias s="spt"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
 
 # Dotfile backup
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Tmux
+alias tls="tmux list"
 
 # alias gcc="gcc-11"
 # Example aliases
