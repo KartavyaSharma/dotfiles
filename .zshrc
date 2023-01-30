@@ -215,3 +215,5 @@ export PATH="/Users/kartavyasharma/Downloads/apache-maven-3.8.7/bin:$PATH"
 export DATA_PROJ="/Users/kartavyasharma/Documents/berkeley/Academics/sp23/cs186/projects/"
 
 d () { z "$@" && exa -l -h --sort=modified;}
+mkf () { touch "$@" && nvim "$@"}
+mkd () { mkdir "$@" && d "$@" }
