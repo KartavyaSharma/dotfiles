@@ -145,7 +145,6 @@ alias t="cd ~/Downloads && ./taskwarrior-tui && cd ~/Downloads/"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
-alias mdoc="pandoc -f markdown-implicit_figures -t pdf \"$@\".md > \"$@\".pdf"
 
 # Dotfile backup
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
@@ -169,6 +168,7 @@ alias game="bash ~/documents/Code/Scripts/game.sh"
 alias comp="bash ~/documents/Code/Scripts/comp.sh"
 alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
 alias fin="bash ~/documents/Code/Scripts/newfile.sh"
+alias nmd="bash ~/Documents/Code/Scripts/pandoc_mkd.sh"
 
 # Starship init
 eval "$(starship init zsh)"
@@ -219,3 +219,4 @@ export DATA_PROJ="/Users/kartavyasharma/Documents/berkeley/Academics/sp23/cs186/
 d () { z "$@" && exa -l -h --sort=modified;}
 mkf () { touch "$@" && nvim "$@"}
 mkd () { mkdir "$@" && d "$@" }
+mdf () { pandoc -f markdown-implicit_figures -t pdf "$1.md" > "$1.pdf" }
