@@ -145,6 +145,7 @@ alias t="cd ~/Downloads && ./taskwarrior-tui && cd ~/Downloads/"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
+alias pandoc="pandoc -f markdown-implicit_figures -t pdf \"$@\" > \"$@\""
 
 # Dotfile backup
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
