@@ -152,6 +152,11 @@ alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && co
 # Tmux
 alias tls="tmux list"
 
+d () { z "$@" && exa -l -h --sort=modified;}
+mkf () { touch "$@" && nvim "$@"}
+mkd () { mkdir "$@" && d "$@" }
+mkmd () { pandoc -f markdown-implicit_figures -t pdf "$1.md" > "$1.pdf" }
+
 # alias gcc="gcc-11"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -215,8 +220,3 @@ eval "$(jenv init -)"
 
 export PATH="/Users/kartavyasharma/Downloads/apache-maven-3.8.7/bin:$PATH"
 export DATA_PROJ="/Users/kartavyasharma/Documents/berkeley/Academics/sp23/cs186/projects/"
-
-d () { z "$@" && exa -l -h --sort=modified;}
-mkf () { touch "$@" && nvim "$@"}
-mkd () { mkdir "$@" && d "$@" }
-mdf () { pandoc -f markdown-implicit_figures -t pdf "$1.md" > "$1.pdf" }
