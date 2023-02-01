@@ -8,7 +8,7 @@ fi
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/kartavyasharma/.oh-my-zsh"
@@ -144,6 +144,7 @@ alias t="cd ~/Downloads && ./taskwarrior-tui && cd ~/Downloads/"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
+alias zsource="source ~/.zshrc"
 
 # Dotfile backup
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
@@ -151,11 +152,6 @@ alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && co
 
 # Tmux
 alias tls="tmux list"
-
-d () { z "$@" && exa -l -h --sort=modified;}
-mkf () { touch "$@" && nvim "$@"}
-mkd () { mkdir "$@" && d "$@" }
-mkmd () { pandoc -f markdown-implicit_figures -t pdf "$1.md" > "$1.pdf" }
 
 # alias gcc="gcc-11"
 # Example aliases
@@ -220,3 +216,20 @@ eval "$(jenv init -)"
 
 export PATH="/Users/kartavyasharma/Downloads/apache-maven-3.8.7/bin:$PATH"
 export DATA_PROJ="/Users/kartavyasharma/Documents/berkeley/Academics/sp23/cs186/projects/"
+
+d () { z "$@" && exa -l -h --sort=modified;}
+mkf () { touch "$@" && nvim "$@"}
+mkd () { mkdir "$@" && d "$@" }
+
+# Markdown stuff
+cplmd () { 
+    inp=$1
+    filtered=${inp%.*}
+    pandoc -f markdown-implicit_figures -t pdf "$inp" > "$filtered.pdf";
+    saf "$filtered.pdf"
+}
+
+# rm alt
+del () {
+    mv "$@" ~/.Trash/
+}
