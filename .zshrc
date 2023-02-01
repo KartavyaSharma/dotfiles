@@ -227,6 +227,7 @@ cplmd () {
     filtered=${inp%.*}
     pandoc -f markdown-implicit_figures -t pdf "$inp" > "$filtered.pdf";
     saf "$filtered.pdf"
+    open -a "iTerm"
 }
 
 # rm alt
