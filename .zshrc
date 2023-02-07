@@ -18,6 +18,9 @@ source ~/.zplug/init.zsh
 
 source $ZSH/oh-my-zsh.sh
 
+# adding zsh aliases
+source ~/.config/zsh/aliases.zsh
+
 # Starship init
 eval "$(starship init zsh)"
 
