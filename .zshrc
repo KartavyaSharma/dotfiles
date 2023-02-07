@@ -112,7 +112,9 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
+
+# General
 alias gocourse="cd ~/documents/berkeley/Academics"
 alias gocode="cd ~/documents/Code"
 alias god="cd ~/documents"
@@ -121,18 +123,11 @@ alias ls="exa -l -h --sort=modified"
 alias lsty="exa -l -h --sort=name"
 alias pyde="conda activate spyder-env && spyder"
 alias cex="conda deactivate"
-alias zconfig="vim ~/.zshrc"
-alias bconfig="vim ~/.bashrc"
-alias nconfig="vim ~/.config/nvim/init.vim"
 alias cl="clear"
 alias vim="nvim"
 alias v="vim"
-alias nplug="vim ~/.config/nvim/lua/plugins.lua"
-alias vconfig="vim ~/.vimrc"
 alias club="cd ~/documents/berkeley/Co-curricular/clubs/csm"
-alias nplugdir="cd ~/.config/nvim/lua/configs"
 alias git="hub"
-alias z="z \"$@\" && ls"
 alias saf="open -a \"Safari\""
 alias br="links"
 alias cr="cargo"
@@ -144,7 +139,15 @@ alias t="cd ~/Downloads && ./taskwarrior-tui && cd ~/Downloads/"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
+
+# Dotfiles
 alias zsource="source ~/.zshrc"
+alias nplugdir="cd ~/.config/nvim/lua/configs"
+alias nplug="vim ~/.config/nvim/lua/plugins.lua"
+alias vconfig="vim ~/.vimrc"
+alias zconfig="vim ~/.zshrc"
+alias bconfig="vim ~/.bashrc"
+alias nconfig="vim ~/.config/nvim/init.vim"
 
 # Dotfile backup
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
