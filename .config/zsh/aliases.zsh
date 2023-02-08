@@ -63,8 +63,9 @@ mkd () { mkdir "$@" && d "$@" }
 
 # markdown stuff
 cplmd () { 
+    inp=$1
     filtered=${inp%.*}
-    pandoc -f markdown-implicit_figures -t pdf "$1" > "$filtered.pdf";
+    pandoc -f markdown-implicit_figures -t pdf "$inp" > "$filtered.pdf";
     saf "$filtered.pdf"
     open -a "iTerm"
 }
