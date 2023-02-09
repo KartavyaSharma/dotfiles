@@ -62,3 +62,5 @@ export DATA_PROJ="/Users/kartavyasharma/Documents/berkeley/Academics/sp23/cs186/
 
 # TMUX theme options
 export ZSH_DARK=1
+
+bindkey ',,' autosuggest-accept
