@@ -59,3 +59,6 @@ eval "$(jenv init -)"
 
 export PATH="/Users/kartavyasharma/Downloads/apache-maven-3.8.7/bin:$PATH"
 export DATA_PROJ="/Users/kartavyasharma/Documents/berkeley/Academics/sp23/cs186/projects/"
+
+# TMUX theme options
+export ZSH_DARK=1
