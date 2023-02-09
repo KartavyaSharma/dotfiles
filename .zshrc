@@ -9,6 +9,11 @@ export ZSH="/Users/kartavyasharma/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-tab autojump tmux)
 
+# Autosuggestion conf
+bindkey ',,' autosuggest-execute
+bindkey ',m' autosuggest-accept
+bindkey ',.' autosuggest-clear
+
 # Plugin vars
 ZSH_TMUX_AUTOSTART=true
 
@@ -62,5 +67,3 @@ export DATA_PROJ="/Users/kartavyasharma/Documents/berkeley/Academics/sp23/cs186/
 
 # TMUX theme options
 export ZSH_DARK=1
-
-bindkey ',,' autosuggest-accept
