@@ -69,7 +69,8 @@ symbol = " "
 
 [time]
 disabled = false
-style = "bold white"
+# style = "bold white"
+style = "bold black"
 format = "[$time]($style)"
 
 [custom.stunnel]

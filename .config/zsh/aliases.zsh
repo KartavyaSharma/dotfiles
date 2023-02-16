@@ -28,6 +28,8 @@ alias t="cd ~/Downloads && ./taskwarrior-tui && cd ~/Downloads/"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
+alias cat=prettybat
+alias bgrep=batgrep
 
 # Dotfiles
 alias zsource="source ~/.zshrc"
@@ -51,6 +53,7 @@ alias comp="bash ~/documents/Code/Scripts/comp.sh"
 alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
 alias fin="bash ~/documents/Code/Scripts/newfile.sh"
 alias nmd="bash ~/Documents/Code/Scripts/pandoc_mkd.sh"
+alias tm="bash ~/.config/tmux/scripts/env_theme_change.sh"
 
 # cd + ls
 d () { z "$@" && exa -l -h --sort=modified;}
