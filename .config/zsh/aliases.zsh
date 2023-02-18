@@ -34,6 +34,7 @@ alias man=batman
 alias gl=glances
 alias pdf="sioyek --new-window"
 alias sioyek-keys="sioyek --execute-command keys_user"
+alias fzf="fzf --preview 'bat {-1} --color=always'"
 
 # Dotfiles
 alias zsource="source ~/.zshrc"
@@ -87,4 +88,15 @@ fcp () {
     git add "$1"
     git commit -m "$2"
     git push
+}
+
+# pipe git show into cat (or bat)
+gshow () {
+    git  show "$@" | bat -l rs
+}
+
+# git diff piped into fzf
+gdiff() {
+  preview="git diff $@ --color=always -- {-1}"
+  git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
