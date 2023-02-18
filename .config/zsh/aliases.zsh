@@ -31,7 +31,8 @@ alias man=batman
 alias gl=glances
 
 # Fast Dir change
-alias fdir='cd $(fd --type directory | fzf)'
+alias fdir='d $(fd --type directory | fzf)'
+alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
 
 # Dotfiles
 alias zsource="source ~/.zshrc"
