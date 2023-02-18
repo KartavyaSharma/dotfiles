@@ -31,6 +31,7 @@ alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23
 alias cat=prettybat
 alias bgrep=batgrep
 alias man=tldr
+alias gl=glances
 
 # Dotfiles
 alias zsource="source ~/.zshrc"
