@@ -4,9 +4,6 @@
 # For a full list of active aliases, run `alias`.
 
 # General
-alias gocourse="cd ~/documents/berkeley/Academics"
-alias gocode="cd ~/documents/Code"
-alias god="cd ~/documents"
 alias lst="exa -l -h --tree --level=3 --ignore-glob="node_modules""
 alias ls="exa -l -h --sort=modified"
 alias lsty="exa -l -h --sort=name"
@@ -15,7 +12,6 @@ alias cex="conda deactivate"
 alias cl="clear"
 alias vim="nvim"
 alias v="vim"
-alias club="cd ~/documents/berkeley/Co-curricular/clubs/csm"
 alias git="hub"
 alias saf="open -a \"Safari\""
 alias br="links"
@@ -26,14 +22,16 @@ alias lg="lazygit"
 alias de="deactivate"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
-alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
+alias pdf="sioyek --new-window"
+alias sioyek-keys="sioyek --execute-command keys_user"
+alias fbat="fzf --preview 'bat {-1} --color=always'"
 alias cat=prettybat
 alias bgrep=batgrep
 alias man=batman
 alias gl=glances
-alias pdf="sioyek --new-window"
-alias sioyek-keys="sioyek --execute-command keys_user"
-alias fzf="fzf --preview 'bat {-1} --color=always'"
+
+# Fast Dir change
+alias fdir='cd $(fd --type directory | fzf)'
 
 # Dotfiles
 alias zsource="source ~/.zshrc"
@@ -56,7 +54,7 @@ alias game="bash ~/documents/Code/Scripts/game.sh"
 alias comp="bash ~/documents/Code/Scripts/comp.sh"
 alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
 alias fin="bash ~/documents/Code/Scripts/newfile.sh"
-alias nmd="bash ~/Documents/Code/Scripts/pandoc_mkd.sh"
+alias nmd="bash ~/documents/Code/Scripts/pandoc_mkd.sh"
 alias tm="bash ~/.config/tmux/scripts/env_theme_change.sh"
 
 # cd + ls
