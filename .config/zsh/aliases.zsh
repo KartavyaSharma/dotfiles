@@ -30,8 +30,10 @@ alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias database="cd ~/Documents/berkeley/Academics/sp23/cs186/projects/proj1/sp23-proj1-KartavyaSharma && idea"
 alias cat=prettybat
 alias bgrep=batgrep
-alias man=tldr
+alias man=batman
 alias gl=glances
+alias pdf="sioyek --new-window"
+alias sioyek-keys="sioyek --execute-command keys_user"
 
 # Dotfiles
 alias zsource="source ~/.zshrc"
