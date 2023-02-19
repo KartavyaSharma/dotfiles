@@ -30,9 +30,7 @@ alias bgrep=batgrep
 alias man=batman
 alias gl=glances
 
-# Fast Dir change
-alias cdir='d $(fd --hidden --type directory | fzf)'
-alias fdir='d $(fd --hidden --type directory --base-directory ~ | fzf)'
+# Fast download move
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
 
 # Dotfiles
@@ -95,7 +93,31 @@ gshow () {
 }
 
 # git diff piped into fzf
-gdiff() {
-  preview="git diff $@ --color=always -- {-1}"
-  git diff $@ --name-only | fzf -m --ansi --preview $preview
+gdiff () {
+    preview="git diff $@ --color=always -- {-1}"
+    git diff $@ --name-only | fzf -m --ansi --preview $preview
+}
+
+# globally searching for files
+fdir () {
+    find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
+    curr_dir=$(pwd)
+
+    if [[ $find_out ]]; then
+        d $find_out
+    else
+        cd $curr_dir
+    fi
+}
+
+# locally searching for files
+cdir ()  {
+    find_out=$(fd --hidden --type directory | fzf)
+    curr_dir=$(pwd)
+
+    if [[ $find_out ]]; then
+        d $find_out
+    else
+        cd $curr_dir
+    fi
 }
