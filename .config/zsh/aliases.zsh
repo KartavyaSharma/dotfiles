@@ -100,24 +100,16 @@ gdiff () {
 }
 
 # globally searching for files
-fdir () {
-    find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
+sdir () {
+    g_or_l=$(gum choose "Global" "Local")
+    if [[ $g_or_l = "Global" ]]; then
+        find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
+    else
+        find_out=$(fd --hidden --type directory | fzf)
+    fi
     curr_dir=$(pwd)
-
     if [[ $find_out ]]; then
         cd ~/$find_out && exa -l -h --sort=modified
-    else
-        cd $curr_dir
-    fi
-}
-
-# locally searching for files
-cdir ()  {
-    find_out=$(fd --hidden --type directory | fzf)
-    curr_dir=$(pwd)
-
-    if [[ $find_out ]]; then
-        cd ./$find_out && exa -l -h --sort=modified
     else
         cd $curr_dir
     fi
@@ -127,7 +119,6 @@ cdir ()  {
 vf () {
     selected=$(fzf --preview 'bat {-1} --color=always')
     curr_dir=$(pwd)
-
     if [[ $selected ]]; then
         v $selected
     else
