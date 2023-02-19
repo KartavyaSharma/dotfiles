@@ -35,6 +35,9 @@ eval "$(hub alias -s)"
 # Zoxide
 eval "$(zoxide init zsh)"
 
+# Bat preprocessor
+eval "$(batpipe)"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/kartavyasharma/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -73,3 +76,9 @@ export SEC_LIST="/Users/kartavyasharma/documents/Code/wordlists/SecLists"
 
 # Word Lists
 export WORD_LIST="/Users/kartavyasharma/documents/Code/wordlists/english-words"
+
+# Editor Flag
+export EDITOR="nvim"
+
+# Batpipe Colors
+export BATPIPE=color
