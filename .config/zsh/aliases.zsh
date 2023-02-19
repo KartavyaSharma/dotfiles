@@ -34,13 +34,13 @@ alias gl=glances
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
 
 # Dotfiles
-alias zsource="source ~/.zshrc"
+alias zsc="source ~/.zshrc"
 alias nplugdir="cd ~/.config/nvim/lua/configs"
 alias nplug="vim ~/.config/nvim/lua/plugins.lua"
-alias vconfig="vim ~/.vimrc"
-alias zconfig="vim ~/.zshrc"
-alias bconfig="vim ~/.bashrc"
-alias nconfig="vim ~/.config/nvim/init.vim"
+alias vconf="vim ~/.vimrc"
+alias zconf="vim ~/.zshrc"
+alias bconf="vim ~/.bashrc"
+alias nconf="vim ~/.config/nvim/init.vim"
 
 # Dotfile backup
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
@@ -104,7 +104,7 @@ fdir () {
     curr_dir=$(pwd)
 
     if [[ $find_out ]]; then
-        d $find_out
+        cd ~/$find_out && exa -l -h --sort=modified
     else
         cd $curr_dir
     fi
@@ -116,7 +116,19 @@ cdir ()  {
     curr_dir=$(pwd)
 
     if [[ $find_out ]]; then
-        d $find_out
+        cd ./$find_out && exa -l -h --sort=modified
+    else
+        cd $curr_dir
+    fi
+}
+
+# file preview for vim
+vf () {
+    selected=$(fzf --preview 'bat {-1} --color=always')
+    curr_dir=$(pwd)
+
+    if [[ $selected ]]; then
+        v $selected
     else
         cd $curr_dir
     fi
