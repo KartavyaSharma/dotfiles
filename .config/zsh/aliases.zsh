@@ -31,7 +31,8 @@ alias man=batman
 alias gl=glances
 
 # Fast Dir change
-alias fdir='d $(fd --type directory | fzf)'
+alias cdir='d $(fd --hidden --type directory | fzf)'
+alias fdir='d $(fd --hidden --type directory --base-directory ~ | fzf)'
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
 
 # Dotfiles
