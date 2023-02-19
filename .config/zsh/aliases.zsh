@@ -29,6 +29,7 @@ alias cat=prettybat
 alias bgrep=batgrep
 alias man=batman
 alias gl=glances
+alias cpath="fbat | pbcopy"
 
 # Fast download move
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
