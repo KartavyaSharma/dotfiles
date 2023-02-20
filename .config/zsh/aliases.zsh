@@ -4,32 +4,34 @@
 # For a full list of active aliases, run `alias`.
 
 # General
+alias cl=clear
+alias vim=nvim
+alias v=vim
+alias git=hub
+alias br=links
+alias cr=cargo
+alias pie=python3
+alias ipy=ipython
+alias lg=lazygit
+alias de=deactivate
+alias cat=prettybat
+alias bgrep=batgrep
+alias man=batman
+alias gl=glances
+
+# Extensions
 alias lst="exa -l -h --tree --level=3 --ignore-glob="node_modules""
 alias ls="exa -l -h --sort=modified"
 alias lsty="exa -l -h --sort=name"
 alias pyde="conda activate spyder-env && spyder"
 alias cex="conda deactivate"
-alias cl="clear"
-alias vim="nvim"
-alias v="vim"
-alias git="hub"
-alias saf="open -a \"Safari\""
-alias br="links"
-alias cr="cargo"
-alias pie="python3"
-alias ipy="ipython"
-alias lg="lazygit"
-alias de="deactivate"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
 alias pdf="sioyek --new-window"
 alias sioyek-keys="sioyek --execute-command keys_user"
 alias fbat="fzf --preview 'bat {-1} --color=always'"
-alias cat=prettybat
-alias bgrep=batgrep
-alias man=batman
-alias gl=glances
 alias cpath="fbat | pbcopy"
+alias saf=open -a "Safari"
 
 # Fast download move
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
@@ -67,13 +69,20 @@ mkf () { touch "$@" && nvim "$@"}
 # cd on mkdir
 mkd () { mkdir "$@" && d "$@" }
 
-# markdown stuff
+# markdown compile
 cplmd () { 
     inp=$1
     filtered=${inp%.*}
     pandoc -f markdown-implicit_figures -t pdf "$inp" > "$filtered.pdf";
     saf "$filtered.pdf"
     open -a "iTerm"
+}
+
+# c++ compile
+cpp () {
+    inp=$1
+    filtered=${inp%.*}
+    g++ -std=c++11 -o $filtered $inp && ./$filtered
 }
 
 # rm alt
@@ -99,8 +108,8 @@ gdiff () {
     git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
-# globally searching for files
-sdir () {
+# search directories globally or locally
+sd () {
     g_or_l=$(gum choose "Global" "Local")
     if [[ $g_or_l = "Global" ]]; then
         find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
