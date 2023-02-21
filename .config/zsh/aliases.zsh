@@ -135,6 +135,27 @@ vf () {
     fi
 }
 
+# brew backup
+bkpb () {
+    rm ~/.config/misc/brew/brew_casks.txt ~/.config/misc/brew/brew_formulae.txt
+    brew list --formulae >> ~/.config/misc/brew/brew_formulae.txt
+    brew list --casks >> ~/.config/misc/brew/brew_casks.txt
+    config add ~/.config/misc/brew/brew_casks.txt ~/.config/misc/brew/brew_formulae.txt
+    config commit -m "Updated brew lists"
+    config push
+}
+
+# python backup
+bkpp () {
+    curr_dir=$(pwd)
+    cd ~/.config/misc/python
+    pie bkp.py
+    config add python.txt
+    config commit -m "Update python module list"
+    config push
+    cd $curr_dir
+}
+
 # temporary data 8 test scripts
 fix_tests () { 
     for file in tests/*.py; do \
