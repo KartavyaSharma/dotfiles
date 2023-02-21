@@ -134,3 +134,10 @@ vf () {
         cd $curr_dir
     fi
 }
+
+# temporary data 8 test scripts
+fix_tests () { 
+    for file in tests/*.py; do \
+        { echo 'OK_FORMAT = True'; cat "$file" } > "$file.tmp" && mv "$file.tmp" "$file"
+    done
+}
