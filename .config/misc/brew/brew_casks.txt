@@ -1,0 +1,4 @@
+db-browser-for-sqlite
+fig
+font-fira-code
+sioyek
