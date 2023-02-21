@@ -2,3 +2,11 @@ db-browser-for-sqlite
 fig
 font-fira-code
 sioyek
+db-browser-for-sqlite
+fig
+font-fira-code
+sioyek
+db-browser-for-sqlite
+fig
+font-fira-code
+sioyek
