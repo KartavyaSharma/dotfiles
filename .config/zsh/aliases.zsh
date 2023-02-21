@@ -156,6 +156,12 @@ bkpp () {
     cd $curr_dir
 }
 
+# kill vs code process
+kvs () {
+    ps aux | grep -i vscode | less
+    pkill -i vscode
+}
+
 # temporary data 8 test scripts
 fix_tests () { 
     for file in tests/*.py; do \
