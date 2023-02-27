@@ -52,7 +52,7 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && config push"
 
 # Tmux
-alias tls="tmux list"
+# alias tls="tmux list"
 
 # Scripts
 alias game="bash ~/documents/Code/Scripts/game.sh"
@@ -171,19 +171,36 @@ kvs () {
 }
 
 # tmux scripts
-setup_csm () {
-    base_dir="~/Documents/berkeley/extracurricular/clubs/CSM/repo"
-    managed_dir="$base_dir/csm_web/csm_web/"
-    activate="cdir $base_dir && sc env/bin/activate && cdir $managed_dir"
-    tmux new -s csm_web -d
-    tmux split-window -h -t csm_web. -d
-    tmux split-window -v -t csm_web.1 -d
-    tmux send-keys -t csm_web.1 "$activate && pie manage.py runserver" Enter
-    tmux send-keys -t csm_web.2 "$activate" Enter
-    tmux send-keys -t csm_web.0 "$activate" Enter
-    tmux send-keys -t csm_web.0 v Enter
-    tmux select-pane -t csm_web.0
-    tmux switch -t csm_web
+init_csm () {
+    # Set session and window names
+    SESSION="csm_web"
+    SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
+    W1="git"
+
+    # Only create new session if it already doesn't exist
+    if [[ "$SESSIONEXISTS" = "" ]]; then
+        BASE="~/Documents/berkeley/extracurricular/clubs/CSM/repo"
+        MANAGED="$BASE/csm_web/csm_web/"
+        ACTIVATE="cdir $BASE && sc env/bin/activate && cdir $MANAGED"
+        tmux new -s $SESSION -d -c "$BASE"
+        tmux split-window -h -t $SESSION. -d
+        tmux split-window -v -t $SESSION.1 -d
+        tmux send-keys -t $SESSION.1 "$ACTIVATE && pie manage.py runserver" Enter
+        tmux send-keys -t $SESSION.2 "$ACTIVATE" Enter
+        tmux send-keys -t $SESSION.0 "$ACTIVATE" Enter
+        tmux send-keys -t $SESSION.0 v Enter
+        tmux select-pane -t $SESSION.0
+        tmux new-window -t $SESSION -d -n $W1
+        tmux send-keys -t $SESSION:$W1 "$ACTIVATE && lazygit" Enter
+    fi
+
+    tmux switch -t $SESSION
+}
+
+# list and choose tmux sessions
+tlst () {
+    SESSION=$(tmux list-sessions -F \#S | gum filter --placeholder "Pick session...")
+    tmux switch-client -t $SESSION || tmux attach -t $SESSION
 }
 
 # temporary data 8 test scripts
