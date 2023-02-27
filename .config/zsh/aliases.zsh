@@ -18,6 +18,7 @@ alias cat=prettybat
 alias bgrep=batgrep
 alias man=batman
 alias gl=glances
+alias sc=source
 
 # Extensions
 alias lst="exa -l -h --tree --level=3 --ignore-glob="node_modules""
@@ -31,6 +32,7 @@ alias pdf="sioyek --new-window"
 alias sioyek-keys="sioyek --execute-command keys_user"
 alias fbat="fzf --preview 'bat {-1} --color=always'"
 alias cpath="fbat | pbcopy"
+alias sbat="fbat --exec bat {}"
 alias saf=open -a "Safari"
 
 # Fast download move
@@ -62,6 +64,7 @@ alias tm="bash ~/.config/tmux/scripts/env_theme_change.sh"
 
 # cd + ls
 d () { z "$@" && exa -l -h --sort=modified;}
+cdir () { cd "$@" && exa -l -h --sort=modified;}
 
 # edit on create
 mkf () { touch "$@" && nvim "$@"}
@@ -160,6 +163,22 @@ bkpp () {
 kvs () {
     ps aux | grep -i vscode | less
     pkill -i vscode
+}
+
+# tmux scripts
+setup_csm () {
+    base_dir="~/Documents/berkeley/extracurricular/clubs/CSM/repo"
+    managed_dir="$base_dir/csm_web/csm_web/"
+    activate="cdir $base_dir && sc env/bin/activate && cdir $managed_dir"
+    tmux new -s csm_web -d
+    tmux split-window -h -t csm_web. -d
+    tmux split-window -v -t csm_web.1 -d
+    tmux send-keys -t csm_web.1 "$activate && pie manage.py runserver" Enter
+    tmux send-keys -t csm_web.2 "$activate" Enter
+    tmux send-keys -t csm_web.0 "$activate" Enter
+    tmux send-keys -t csm_web.0 v Enter
+    tmux select-pane -t csm_web.0
+    tmux switch -t csm_web
 }
 
 # temporary data 8 test scripts
