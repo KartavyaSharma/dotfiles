@@ -114,16 +114,21 @@ gdiff () {
 # search directories globally or locally
 sd () {
     g_or_l=$(gum choose "Global" "Local")
+    base_dir="~"
     if [[ $g_or_l = "Global" ]]; then
         find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
-    else
-        find_out=$(fd --hidden --type directory | fzf)
+    elif [[ $g_or_l = "Local" ]] then
+        find_out=$(fd --hidden --type directory --base-directory . | fzf)
     fi
     curr_dir=$(pwd)
     if [[ $find_out ]]; then
-        cd ~/$find_out && exa -l -h --sort=modified
+        if [[ $g_or_l = "Global" ]]; then
+            cd ~/$find_out
+        elif [[ $g_or_l = "Local" ]]; then
+            cd ./$find_out
+        fi
     else
-        cd $curr_dir
+        cdir $curr_dir
     fi
 }
 
