@@ -175,7 +175,7 @@ init_csm () {
     # Set session and window names
     SESSION="csm_web"
     SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
-    W1="git"
+    W1="urls&fetch"
 
     # Only create new session if it already doesn't exist
     if [[ "$SESSIONEXISTS" = "" ]]; then
@@ -191,7 +191,9 @@ init_csm () {
         tmux send-keys -t $SESSION.0 v Enter
         tmux select-pane -t $SESSION.0
         tmux new-window -t $SESSION -d -n $W1
-        tmux send-keys -t $SESSION:$W1 "$ACTIVATE && lazygit" Enter
+        tmux split-window -v -t $SESSION:$W1 -d -p 35
+        tmux send-keys -t $SESSION:$W1.0 "$ACTIVATE && pie manage.py show_urls" Enter
+        tmux send-keys -t $SESSION:$W1.1 "$ACTIVATE && git fetch" Enter
     fi
 
     tmux switch -t $SESSION
