@@ -51,9 +51,6 @@ alias nconf="vim ~/.config/nvim/init.vim"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && config push"
 
-# Tmux
-# alias tls="tmux list"
-
 # Scripts
 alias game="bash ~/documents/Code/Scripts/game.sh"
 alias comp="bash ~/documents/Code/Scripts/comp.sh"
@@ -171,33 +168,42 @@ kvs () {
 }
 
 # tmux scripts
+
+alias sendall="./tmux_sendall.sh"
+
 init_csm () {
     # Set session and window names
     SESSION="csm_web"
+    W1="urls_fetch"
+
+    BASE="~/Documents/berkeley/extracurricular/clubs/CSM/repo"
+    MANAGED="$BASE/csm_web/csm_web/"
+    ACTIVATE="cdir $BASE && sc env/bin/activate && cdir $MANAGED"
+
     SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
-    W1="urls&fetch"
 
     # Only create new session if it already doesn't exist
     if [[ "$SESSIONEXISTS" = "" ]]; then
-        BASE="~/Documents/berkeley/extracurricular/clubs/CSM/repo"
-        MANAGED="$BASE/csm_web/csm_web/"
-        ACTIVATE="cdir $BASE && sc env/bin/activate && cdir $MANAGED"
+        # Initialize panes and windows
         tmux new -s $SESSION -d -c "$BASE"
         tmux split-window -h -t $SESSION. -d
         tmux split-window -v -t $SESSION.1 -d
-        tmux send-keys -t $SESSION.1 "$ACTIVATE && pie manage.py runserver" Enter
-        tmux send-keys -t $SESSION.2 "$ACTIVATE" Enter
-        tmux send-keys -t $SESSION.0 "$ACTIVATE" Enter
-        tmux send-keys -t $SESSION.0 v Enter
-        tmux select-pane -t $SESSION.0
         tmux new-window -t $SESSION -d -n $W1
         tmux split-window -v -t $SESSION:$W1 -d -p 35
-        tmux send-keys -t $SESSION:$W1.0 "$ACTIVATE && pie manage.py show_urls" Enter
-        tmux send-keys -t $SESSION:$W1.1 "$ACTIVATE && git fetch" Enter
+        # Send activation commend to all
+        sendall $SESSION "$ACTIVATE"
+        # Run pane/window specific command
+        tmux send-keys -t $SESSION.1 "pie manage.py runserver" Enter
+        tmux send-keys -t $SESSION:$W1.0 "pie manage.py show_urls" Enter
+        tmux send-keys -t $SESSION:$W1.1 "git fetch" Enter
+        tmux send-keys -t $SESSION.0 v Enter
+        # Switch to main editor window
+        tmux select-pane -t $SESSION.0
     fi
 
     tmux switch -t $SESSION
 }
+
 
 # list and choose tmux sessions
 tlst () {
