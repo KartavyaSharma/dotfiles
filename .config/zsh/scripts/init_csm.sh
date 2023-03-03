@@ -19,7 +19,7 @@ if [[ "$SESSIONEXISTS" = "" ]]; then
     tmux new-window -t $SESSION -d -n $W1
     tmux split-window -v -t $SESSION:$W1 -d -p 35
     # Send activation commend to all
-    ./tmux_sendall.sh $SESSION "$ACTIVATE"
+    "$SCRIPTS"/tmux_sendall.sh $SESSION "$ACTIVATE"
     # Run pane/window specific command
     tmux send-keys -t $SESSION.1 "pie manage.py runserver" Enter
     tmux send-keys -t $SESSION:$W1.0 "pie manage.py show_urls" Enter

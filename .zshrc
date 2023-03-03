@@ -82,3 +82,6 @@ export EDITOR="nvim"
 
 # Batpipe Colors
 export BATPIPE=color
+
+# Scripts
+export SCRIPTS="/Users/kartavyasharma/.config/zsh/scripts"
