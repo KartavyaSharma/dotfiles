@@ -3,6 +3,8 @@
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+################# ALIASES #################
+
 # General
 alias cl=clear
 alias vim=nvim
@@ -22,6 +24,8 @@ alias sc=source
 
 # Extensions
 alias lst="exa -l -h --tree --level=3 --ignore-glob="node_modules""
+alias game="watch -n 0.1 sudo ifconfig awdl0 down"
+alias cpcomp="g++ -std=c++11 -o a __master.cpp && ./a"
 alias ls="exa -l -h --sort=modified"
 alias lsty="exa -l -h --sort=name"
 alias pyde="conda activate spyder-env && spyder"
@@ -51,17 +55,17 @@ alias nconf="vim ~/.config/nvim/init.vim"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && config push"
 
-# Scripts
-alias game="bash ~/documents/Code/Scripts/game.sh"
-alias comp="bash ~/documents/Code/Scripts/comp.sh"
+# Competitive programming scripts
 alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
 alias fin="bash ~/documents/Code/Scripts/newfile.sh"
-alias nmd="bash ~/documents/Code/Scripts/pandoc_mkd.sh"
-alias tm="bash ~/.config/tmux/scripts/env_theme_change.sh"
 
+# Scripts
+alias nmd="./pandoc_markdown.sh"
 
 # tmux scripts
 alias init_csm="./init_csm.sh"
+
+################# QOL GENERAL SCRIPTS #################
 
 # cd + ls
 d () { z "$@" && exa -l -h --sort=modified;}
@@ -146,10 +150,14 @@ vf () {
 
 # brew backup
 bkpb () {
-    rm ~/.config/misc/brew/brew_casks.txt ~/.config/misc/brew/brew_formulae.txt
-    brew list --formulae >> ~/.config/misc/brew/brew_formulae.txt
-    brew list --casks >> ~/.config/misc/brew/brew_casks.txt
-    config add ~/.config/misc/brew/brew_casks.txt ~/.config/misc/brew/brew_formulae.txt
+    BREW_CONFIG="~/.config/misc/brew"
+    CASKS="$BREW_CONFIG/brew_casks.txt"
+    FORMULAE="$BREW_CONFIG/brew_formulae.txt"
+
+    rm "$CASKS" "$FORMULAE"
+    brew list --formulae >> $FORMULAE 
+    brew list --casks >> $FORMULAE 
+    config add "$CASKS" "$FORMULAE"
     config commit -m "Updated brew lists"
     config push
 }
@@ -176,6 +184,8 @@ tlst () {
     SESSION=$(tmux list-sessions -F \#S | gum filter --placeholder "Pick session...")
     tmux switch-client -t $SESSION || tmux attach -t $SESSION
 }
+
+################# TEMP SCRIPTS #################
 
 # temporary data 8 test scripts
 fix_tests () { 
