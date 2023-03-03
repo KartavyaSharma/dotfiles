@@ -60,10 +60,13 @@ alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
 alias fin="bash ~/documents/Code/Scripts/newfile.sh"
 
 # Scripts
-alias nmd="./pandoc_markdown.sh"
+alias nmd="./scripts/pandoc_markdown.sh"
 
 # tmux scripts
-alias init_csm="./init_csm.sh"
+alias init_csm="./scripts/init_csm.sh"
+
+# Compiled binaries
+alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
 
 ################# QOL GENERAL SCRIPTS #################
 
