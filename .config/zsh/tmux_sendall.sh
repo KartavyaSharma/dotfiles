@@ -8,7 +8,6 @@ if [[ -z $1 ]]; then
     fi
     exit 1
 else
-    echo "$1"
     session="$1"
 fi
 
