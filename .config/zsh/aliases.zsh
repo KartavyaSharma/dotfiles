@@ -60,10 +60,12 @@ alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
 alias fin="bash ~/documents/Code/Scripts/newfile.sh"
 
 # Scripts
-alias nmd="./scripts/pandoc_markdown.sh"
+alias nmd="$SCRIPTS/pandoc_markdown.sh"
 
 # tmux scripts
-alias init_csm="./scripts/init_csm.sh"
+alias init_csm="$SCRIPTS/init_csm.sh"
+alias resume="$SCRIPTS/resume.sh"
+alias neetcode="$SCRIPTS/neetcode.sh"
 
 # Compiled binaries
 alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
@@ -131,12 +133,12 @@ sd () {
     curr_dir=$(pwd)
     if [[ $find_out ]]; then
         if [[ $g_or_l = "Global" ]]; then
-            cd ~/$find_out
+            cdir ~/$find_out
         elif [[ $g_or_l = "Local" ]]; then
-            cd ./$find_out
+            cdir ./$find_out
         fi
     else
-        cdir $curr_dir
+        cd $curr_dir
     fi
 }
 
