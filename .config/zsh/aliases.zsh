@@ -142,12 +142,13 @@ sd () {
     fi
 }
 
+# copy any file path on ~, narrow search by directory, then by files
 gcpath () {
     curr_dir=$(pwd)
     find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
     if [[ $find_out ]]; then
         cdir ~/$find_out
-        get_file=$(fzf --preview 'bat {-1} --color=always')
+        get_file=$(fbat)
         complete_path="~/$find_out$get_file"
         echo $complete_path | pbcopy
     else
