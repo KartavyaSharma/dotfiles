@@ -2,7 +2,7 @@
 
 # Create key-value pair for file to path map
 declare -A FILES
-FILES+=( ["ZSH Configuration File"]="~/.zshrc" ["Aliases"]="./.config/zsh/aliases.zsh" ["Scripts"]="~/.config/zsh/scripts/" ["TMUX Configuration"]="~/.tmux.conf" ["Starship Configuration"]="~/.config/starship.toml" ["Python & Brew Package Lists"]="~/.config/misc/" ["All"]="")
+FILES+=( ["ZSH Configuration File"]="./.zshrc" ["Aliases"]="./.config/zsh/aliases.zsh" ["Scripts"]="~/.config/zsh/scripts/" ["TMUX Configuration"]="./.tmux.conf" ["Starship Configuration"]="./.config/starship.toml" ["Python & Brew Package Lists"]="~/.config/misc/" ["All"]="")
 
 # Choose backup file
 FILE_PICK=$(gum choose "ZSH Configuration File" "Aliases" "Scripts" "TMUX
