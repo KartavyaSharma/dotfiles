@@ -62,6 +62,9 @@ alias fin="bash ~/documents/Code/Scripts/newfile.sh"
 # Scripts
 alias nmd="$SCRIPTS/pandoc_markdown.sh"
 
+# Synth Shell 
+# source "$SCRIPTS/synth.sh"
+
 # tmux scripts
 alias init_csm="$SCRIPTS/init_csm.sh"
 alias resume="$SCRIPTS/resume.sh"
