@@ -171,31 +171,6 @@ vf () {
     fi
 }
 
-# brew backup
-# bkpb () {
-#     BREW_CONFIG="~/.config/misc/brew"
-#     CASKS="$BREW_CONFIG/brew_casks.txt"
-#     FORMULAE="$BREW_CONFIG/brew_formulae.txt"
-#
-#     rm "$CASKS" "$FORMULAE"
-#     brew list --formulae >> $FORMULAE 
-#     brew list --casks >> $FORMULAE 
-#     config add "$CASKS" "$FORMULAE"
-#     config commit -m "Updated brew lists"
-#     config push
-# }
-
-# python backup
-bkpp () {
-    curr_dir=$(pwd)
-    cd ~/.config/misc/python
-    pie bkp.py
-    config add python.txt
-    config commit -m "Update python module list"
-    config push
-    cd $curr_dir
-}
-
 # kill vs code process
 kvs () {
     ps aux | grep -i vscode | less
