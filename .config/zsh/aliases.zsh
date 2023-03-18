@@ -69,6 +69,7 @@ alias nmd="$SCRIPTS/pandoc_markdown.sh"
 alias init_csm="$SCRIPTS/init_csm.sh"
 alias resume="$SCRIPTS/resume.sh"
 alias neetcode="$SCRIPTS/neetcode.sh"
+alias bkp="$SCRIPTS/bkp_choose.sh"
 
 # Compiled binaries
 alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
