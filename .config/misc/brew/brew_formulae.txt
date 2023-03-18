@@ -3,6 +3,7 @@ aom
 aria2
 autojump
 awscli
+bash
 bat
 bat-extras
 bazelisk
@@ -21,6 +22,7 @@ chntpw
 coreutils
 cscope
 dbus
+dnsmasq
 doctl
 docutils
 dos2unix
@@ -56,6 +58,7 @@ haskell-stack
 heroku
 heroku-node
 highway
+how2
 httpie
 hub
 icu4c
@@ -72,6 +75,7 @@ lazygit
 libavif
 libevent
 libffi
+libgit2
 libice
 libidn2
 liblinear
@@ -149,6 +153,7 @@ pnpm
 portaudio
 postgresql@14
 prettierd
+pycparser
 pygments
 python-tk@3.9
 python@3.10
@@ -168,6 +173,7 @@ sqlite
 starship
 task
 tcl-tk
+thefuck
 tldr
 tmux
 tree-sitter
