@@ -1,119 +1,119 @@
-
-Please wait a moment while I gather a list of all available modules...
-
-Cryptodome          asyncore            inspect             scandir
-IPython             atexit              io                  sched
-PIL                 attr                ipaddress           scipy
-__future__          attrs               ipykernel           secrets
-__hello__           audioop             ipykernel_launcher  select
-__phello__          backcall            itertools           selectors
-_abc                base64              jedi                selenium
-_aix_support        bdb                 jinja2              setuptools
-_ast                bernhard            json                shelve
-_asyncio            binascii            jupyter             shlex
-_bisect             bisect              jupyter_client      shutil
-_blake2             bkp                 jupyter_core        signal
-_bootsubprocess     bottle              jupyterlab_plotly   site
-_bz2                branca              kafka               sitecustomize
-_cffi_backend       bs4                 keyword             six
-_codecs             builtins            kiwisolver          smtpd
-_codecs_cn          bz2                 langdetect          smtplib
-_codecs_hk          cProfile            lib2to3             sndhdr
-_codecs_iso2022     calendar            linecache           sniffio
-_codecs_jp          cassandra           locale              social-analyzer
-_codecs_kr          certifi             logging             socket
-_codecs_tw          cffi                lxml                socketserver
-_collections        cgi                 lzma                socks
-_collections_abc    cgitb               mailbox             sockshandler
-_compat_pickle      charset_normalizer  mailcap             sortedcontainers
-_compression        chevron             markupsafe          soupsieve
-_contextvars        chunk               marshal             sqlite3
-_crypt              click               math                sre_compile
-_csv                cmath               matplotlib          sre_constants
-_ctypes             cmd                 matplotlib_inline   sre_parse
-_ctypes_test        code                mimetypes           ssl
-_curses             codecs              mmap                stack_data
-_curses_panel       codeop              modulefinder        stat
-_datetime           collections         msgpack             statistics
-_dbm                colorsys            multiprocessing     statsd
-_decimal            comm                nest_asyncio        string
-_distutils_hack     compileall          netifaces           stringprep
-_elementtree        concurrent          netrc               struct
-_functools          configparser        nis                 subprocess
-_hashlib            contextlib          nntplib             sunau
-_heapq              contextvars         ntpath              symtable
-_imp                contourpy           nturl2path          sys
-_io                 copy                numbers             sysconfig
-_json               copyreg             numpy               syslog
-_locale             couchdb             opcode              tabnanny
-_lsprof             crypt               operator            tarfile
-_lzma               cryptography        optparse            telnetlib
-_markupbase         csv                 os                  tempfile
-_md5                ctypes              outcome             tenacity
-_multibytecodec     curses              packaging           termcolor
-_multiprocessing    cycler              paho                termios
-_opcode             dataclasses         pandas              test
-_operator           datascience         parso               textwrap
-_osx_support        datetime            pathlib             this
-_pickle             dateutil            pbkdf2              threading
-_plotly_future_     dbm                 pdb                 time
-_plotly_utils       debugpy             pexpect             timeit
-_posixshmem         decimal             pickle              tkinter
-_posixsubprocess    decorator           pickleshare         tld
-_py_abc             defusedxml          pickletools         token
-_pydecimal          difflib             pika                tokenize
-_pyio               dis                 pip                 tomllib
-_queue              distutils           pipes               tornado
-_random             docker              pkg_resources       trace
-_scproxy            doctest             pkgutil             traceback
-_sha1               elastic_transport   platform            tracemalloc
-_sha256             elasticsearch       platformdirs        traitlets
-_sha3               email               plistlib            trio
-_sha512             encodings           plotly              trio_websocket
-_signal             ensurepip           ply                 tty
-_sitebuiltins       enum                poplib              turtle
-_socket             errno               posix               turtledemo
-_sqlite3            executing           posixpath           types
-_sre                faulthandler        potsdb              typing
-_ssl                fcntl               pprint              typing_extensions
-_stat               filecmp             profile             ujson
-_statistics         fileinput           prometheus_client   unicodedata
-_string             fnmatch             prompt_toolkit      unittest
-_strptime           folium              pstats              urllib
-_struct             fontTools           psutil              urllib3
-_symtable           fractions           pty                 uu
-_sysconfigdata__darwin_darwin ftplib              ptyprocess          uuid
-_testbuffer         functools           pure_eval           venv
-_testcapi           galeodes            pwd                 warnings
-_testclinic         gc                  py3nvml             wave
-_testimportmultiple genericpath         py_compile          wcwidth
-_testinternalcapi   geomet              pyasn1              weakref
-_testmultiphase     getopt              pyclbr              webbrowser
-_thread             getpass             pycparser           websocket
-_threading_local    gettext             pydoc               wheel
-_tokenize           glances             pydoc_data          wifi
-_tracemalloc        glob                pyexpat             wsgiref
-_typing             graphitesend        pygal               wsproto
-_uuid               graphlib            pygments            xdrlib
-_warnings           grp                 pylab               xml
-_weakref            gzip                pymdstat            xmlrpc
-_weakrefset         h11                 pyparsing           xmltodict
-_xxsubinterpreters  hashlib             pysmi               xxlimited
-_xxtestfuzz         heapq               pysnmp              xxlimited_35
-_zoneinfo           hmac                pytz                xxsubtype
-abc                 html                queue               z3
-aifc                http                quopri              zeroconf
-antigravity         idlelib             random              zipapp
-appnope             idna                re                  zipfile
-argparse            ifaddr              reactivex           zipimport
-array               imaplib             readline            zlib
-ast                 imghdr              reprlib             zmq
-asttokens           imp                 requests            zoneinfo
-async_generator     importlib           resource            
-asynchat            influxdb            rlcompleter         
-asyncio             influxdb_client     runpy               
-
-Enter any module name to get more help.  Or, type "modules spam" to search
-for modules whose name or summary contain the string "spam".
-
-None
+appnope==0.1.3
+asttokens==2.2.1
+async-generator==1.10
+attrs==22.2.0
+backcall==0.2.0
+beautifulsoup4==4.11.2
+bernhard==0.2.6
+bottle==0.12.23
+branca==0.6.0
+cassandra-driver==3.25.0
+certifi==2022.12.7
+cffi==1.15.1
+charset-normalizer==3.0.1
+chevron==0.14.0
+click==8.1.3
+comm==0.1.2
+contourpy==1.0.7
+CouchDB==1.2
+cryptography==39.0.1
+cycler==0.11.0
+datascience==0.17.5
+debugpy==1.6.6
+decorator==5.1.1
+defusedxml==0.7.1
+docker==6.0.1
+elastic-transport==8.4.0
+elasticsearch==8.6.2
+executing==1.2.0
+folium==0.14.0
+fonttools==4.38.0
+galeodes==0.7
+geomet==0.2.1.post1
+Glances==3.3.1.1
+graphitesender==0.11.2
+h11==0.14.0
+idna==3.4
+ifaddr==0.2.0
+influxdb==5.3.1
+influxdb-client==1.36.0
+ipykernel==6.21.2
+ipython==8.10.0
+jedi==0.18.2
+Jinja2==3.1.2
+jupyter_client==8.0.3
+jupyter_core==5.2.0
+kafka-python==2.0.2
+kiwisolver==1.4.4
+langdetect==1.0.9
+lxml==4.9.2
+MarkupSafe==2.1.2
+matplotlib==3.7.0
+matplotlib-inline==0.1.6
+msgpack==1.0.4
+nest-asyncio==1.5.6
+netifaces==0.11.0
+numpy==1.24.2
+outcome==1.2.0
+packaging==23.0
+paho-mqtt==1.6.1
+pandas==1.5.3
+parso==0.8.3
+pbkdf2==1.3
+pexpect==4.8.0
+pickleshare==0.7.5
+pika==1.3.1
+Pillow==9.4.0
+platformdirs==3.0.0
+plotly==5.13.0
+ply==3.11
+potsdb==1.0.3
+prometheus-client==0.16.0
+prompt-toolkit==3.0.36
+protobuf==4.22.0
+psutil==5.9.4
+ptyprocess==0.7.0
+pure-eval==0.2.2
+py3nvml==0.2.7
+pyasn1==0.4.8
+pycparser==2.21
+pycryptodomex==3.17
+pygal==3.0.0
+Pygments==2.14.0
+pymdstat==0.4.3
+pyparsing==3.0.9
+pyperclip==1.8.2
+pysmi==0.3.4
+pysnmp==4.4.12
+PySocks==1.7.1
+python-dateutil==2.8.2
+pytz==2022.7.1
+pyzmq==25.0.0
+reactivex==4.0.4
+requests==2.28.2
+scandir==1.10.0
+scipy==1.10.1
+selenium==4.8.2
+six==1.16.0
+sniffio==1.3.0
+social-analyzer==0.45
+sortedcontainers==2.4.0
+soupsieve==2.4
+stack-data==0.6.2
+statsd==4.0.1
+tenacity==8.2.1
+termcolor==2.2.0
+tld==0.12.7
+tornado==6.2
+traitlets==5.9.0
+trio==0.22.0
+trio-websocket==0.9.2
+typing_extensions==4.5.0
+ujson==5.7.0
+urllib3==1.26.14
+wcwidth==0.2.6
+websocket-client==1.5.1
+wifi==0.3.8
+wsproto==1.2.0
+xmltodict==0.13.0
+zeroconf==0.47.3
