@@ -38,6 +38,9 @@ eval "$(zoxide init zsh)"
 # Bat preprocessor
 eval "$(batpipe)"
 
+# ...
+eval $(thefuck --alias FUCK)
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/kartavyasharma/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
