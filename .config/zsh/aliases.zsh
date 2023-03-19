@@ -21,6 +21,7 @@ alias bgrep=batgrep
 alias man=batman
 alias gl=glances
 alias sc=source
+alias task=dstask
 
 # Extensions
 alias lst="exa -l -h --tree --level=3 --ignore-glob="node_modules""
