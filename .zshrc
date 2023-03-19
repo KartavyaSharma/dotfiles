@@ -26,6 +26,9 @@ source $ZSH/oh-my-zsh.sh
 # zsh aliases
 source ~/.config/zsh/aliases.zsh
 
+# fuck
+eval "$(thefuck --alias)"
+
 # Starship init
 eval "$(starship init zsh)"
 
@@ -88,3 +91,5 @@ export BATPIPE=color
 
 # Scripts
 export SCRIPTS="/Users/kartavyasharma/.config/zsh/scripts"
+
+eval $(thefuck --alias)
