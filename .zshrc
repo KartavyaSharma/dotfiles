@@ -91,5 +91,3 @@ export BATPIPE=color
 
 # Scripts
 export SCRIPTS="/Users/kartavyasharma/.config/zsh/scripts"
-
-eval $(thefuck --alias)
