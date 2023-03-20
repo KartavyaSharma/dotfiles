@@ -148,17 +148,36 @@ sd () {
 }
 
 # copy any file path on ~, narrow search by directory, then by files
-gcpath () {
+gpath () {
     curr_dir=$(pwd)
     find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
     if [[ $find_out ]]; then
-        cdir ~/$find_out
+        cd ~/$find_out
         get_file=$(fbat)
         complete_path="~/$find_out$get_file"
-        echo $complete_path | pbcopy
+        echo $complete_path
     else
-        cd $curr_dir
+        echo ""
+    fi 
+    cd $curr_dir
+}
+
+# copy any file path on ~ to clipboard, narrow by directory, then by files
+gcpy () {
+    gpath | pbcopy
+}
+
+# move any file on ~ path, narrow by directory, then by files
+gmv () {
+    curr_dir=$(pwd)
+    cd
+    get_path=$(gpath)
+    filtered=".${get_path:1}"
+    echo $filtered
+    if [[ ! -z "$get_path" ]]; then 
+        mv "${filtered}" "${curr_dir}"
     fi
+    cd $curr_dir
 }
 
 # file preview for vim
