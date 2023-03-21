@@ -38,6 +38,7 @@ alias sioyek-keys="sioyek --execute-command keys_user"
 alias fbat="fzf --preview 'bat {-1} --color=always'"
 alias cpath="fbat | pbcopy"
 alias sbat="fbat --exec bat {}"
+alias gcpy="gpath | pbcopy"
 alias saf=open -a "Safari"
 
 # Fast download move
@@ -160,11 +161,6 @@ gpath () {
         echo ""
     fi 
     cd $curr_dir
-}
-
-# copy any file path on ~ to clipboard, narrow by directory, then by files
-gcpy () {
-    gpath | pbcopy
 }
 
 # move any file on ~ path, narrow by directory, then by files
