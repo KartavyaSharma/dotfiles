@@ -26,6 +26,7 @@ dnsmasq
 doctl
 docutils
 dos2unix
+dstask
 emacs
 exa
 exercism
@@ -44,6 +45,7 @@ gettext
 giflib
 git
 glib
+glow
 gmp
 gnutls
 go
@@ -79,6 +81,7 @@ libgit2
 libice
 libidn2
 liblinear
+libmagic
 libmpc
 libnghttp2
 libpng
@@ -163,6 +166,7 @@ qemu
 readline
 reattach-to-user-namespace
 ripgrep
+rizin
 ruby
 six
 smartmontools
@@ -188,6 +192,7 @@ wget
 wimlib
 xclip
 xorgproto
+xxhash
 xz
 z3
 zoxide
