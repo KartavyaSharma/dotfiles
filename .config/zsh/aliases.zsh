@@ -41,6 +41,7 @@ alias sbat="fbat --exec bat {}"
 alias pcp="gpath | pbcopy"
 alias saf=open -a "Safari"
 alias ktheme="kitty +kitten themes --reload-in=all ${@}"
+alias tre="tmux rename-session ${@}"
 
 # Fast download copy/move
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
