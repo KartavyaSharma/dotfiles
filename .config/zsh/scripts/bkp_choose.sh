@@ -2,11 +2,11 @@
 
 # Create key-value pair for file to path map
 declare -A FILES
-FILES+=( ["ZSH Configuration File"]="./.zshrc" ["Aliases"]="./.config/zsh/aliases.zsh" ["Scripts"]="./.config/zsh/scripts/" ["TMUX Conf"]="./.tmux.conf" ["Starship Configuration"]="./.config/starship.toml" ["Python & Brew Package Lists"]="./.config/misc/" ["All"]="")
+FILES+=( ["ZSH Configuration File"]="./.zshrc" ["Aliases"]="./.config/zsh/aliases.zsh" ["Scripts"]="./.config/zsh/scripts/" ["TMUX Conf"]="./.tmux.conf" ["Starship Configuration"]="./.config/starship.toml" ["Python & Brew Package Lists"]="./.config/misc/" ["Kitty"]="./.config/kitty/kitty.conf" ["All"]="")
 
 echo "Choose file for backup:"
 # Choose backup file
-FILE_PICK=$(gum choose "ZSH Configuration File" "Aliases" "Scripts" "TMUX Conf" "Starship Configuration" "Python & Brew Package Lists")
+FILE_PICK=$(gum choose "ZSH Configuration File" "Aliases" "Scripts" "TMUX Conf" "Starship Configuration" "Python & Brew Package Lists" "Kitty")
 
 gconf () {
     /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME "${@}"
