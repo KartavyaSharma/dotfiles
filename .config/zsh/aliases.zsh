@@ -42,8 +42,9 @@ alias pcp="gpath | pbcopy"
 alias saf=open -a "Safari"
 alias ktheme="kitty +kitten themes --reload-in=all ${@}"
 
-# Fast download move
+# Fast download copy/move
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
+alias cpdw='cp $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
 
 # Dotfiles
 alias zsc="source ~/.zshrc"
