@@ -53,9 +53,14 @@ if [[ $FILE_PICK ]]; then
             case "$FILE_PICK" in
                 "Scripts")
                     glob_path="${FILES[$FILE_PICK]}"
+                    # Add all files in $SCRIPTS
                     declare -a script_files
                     for FILE in *; do
                         script_files+=("$glob_path/$FILE");
+                    done
+                    # Add all files from dirs
+                    for DIR in */; do
+                        echo $DIR
                     done
                     git_backup ${script_files[@]} $FILE_PICK
                     cd $curr_dir 
