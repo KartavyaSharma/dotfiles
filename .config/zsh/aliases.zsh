@@ -38,8 +38,9 @@ alias sioyek-keys="sioyek --execute-command keys_user"
 alias fbat="fzf --preview 'bat {-1} --color=always'"
 alias cpath="fbat | pbcopy"
 alias sbat="fbat --exec bat {}"
-alias gcpy="gpath | pbcopy"
+alias pcp="gpath | pbcopy"
 alias saf=open -a "Safari"
+alias ktheme="kitty +kitten themes --reload-in=all ${@}"
 
 # Fast download move
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
@@ -63,15 +64,15 @@ alias fin="bash ~/documents/Code/Scripts/newfile.sh"
 
 # Scripts
 alias nmd="$SCRIPTS/pandoc_markdown.sh"
+alias bkp="$SCRIPTS/bkp_choose.sh"
 
 # Synth Shell 
 # source "$SCRIPTS/synth.sh"
 
 # tmux scripts
-alias init_csm="$SCRIPTS/init_csm.sh"
-alias resume="$SCRIPTS/resume.sh"
-alias neetcode="$SCRIPTS/neetcode.sh"
-alias bkp="$SCRIPTS/bkp_choose.sh"
+alias init_csm="$SCRIPTS/tmux/init_csm.sh"
+alias resume="$SCRIPTS/tmux/resume.sh"
+alias neetcode="$SCRIPTS/tmux/neetcode.sh"
 
 # Compiled binaries
 alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
