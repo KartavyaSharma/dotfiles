@@ -2,7 +2,7 @@
 
 # Create key-value pair for file to path map
 declare -A FILES
-FILES+=( ["ZSH Configuration File"]="./.zshrc" ["Aliases"]="./.config/zsh/aliases.zsh" ["Scripts"]="./.config/zsh/scripts/" ["TMUX Conf"]="./.tmux.conf" ["Starship Configuration"]="./.config/starship.toml" ["Python & Brew Package Lists"]="./.config/misc/" ["Kitty"]="./.config/kitty/kitty.conf" ["All"]="")
+FILES+=( ["ZSH Configuration File"]="./.zshrc" ["Aliases"]="./.config/zsh/aliases.zsh" ["Scripts"]="./.config/zsh/scripts" ["TMUX Conf"]="./.tmux.conf" ["Starship Configuration"]="./.config/starship.toml" ["Python & Brew Package Lists"]="./.config/misc" ["Kitty"]="./.config/kitty/kitty.conf" ["All"]="")
 
 echo "Choose file for backup:"
 # Choose backup file
@@ -55,12 +55,16 @@ if [[ $FILE_PICK ]]; then
                     glob_path="${FILES[$FILE_PICK]}"
                     # Add all files in $SCRIPTS
                     declare -a script_files
-                    for FILE in *; do
+                    for FILE in *.sh; do
                         script_files+=("$glob_path/$FILE");
                     done
                     # Add all files from dirs
                     for DIR in */; do
-                        echo $DIR
+                        dir_path="$glob_path/$DIR"
+                        cd && cd "${dir_path}"
+                        for FILE in *.sh; do
+                            script_files+=("$dir_path$FILE")
+                        done
                     done
                     git_backup ${script_files[@]} $FILE_PICK
                     cd $curr_dir 
