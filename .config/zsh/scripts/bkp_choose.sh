@@ -4,9 +4,15 @@
 declare -A FILES
 FILES+=( ["ZSH Configuration File"]="./.zshrc" ["Aliases"]="./.config/zsh/aliases.zsh" ["Scripts"]="./.config/zsh/scripts" ["TMUX Conf"]="./.tmux.conf" ["Starship Configuration"]="./.config/starship.toml" ["Python & Brew Package Lists"]="./.config/misc" ["Kitty"]="./.config/kitty/kitty.conf" ["All"]="")
 
+# Create array of associative keys for $(gum choose)
+declare -a FILE_OPTS 
+for FILE in "${!FILES[@]}"; do
+    FILE_OPTS+=("$FILE")
+done
+
 echo "Choose file for backup:"
 # Choose backup file
-FILE_PICK=$(gum choose "ZSH Configuration File" "Aliases" "Scripts" "TMUX Conf" "Starship Configuration" "Python & Brew Package Lists" "Kitty")
+FILE_PICK=$(gum choose "${FILE_OPTS[@]}")
 
 gconf () {
     /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME "${@}"
