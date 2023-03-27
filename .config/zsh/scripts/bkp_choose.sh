@@ -72,6 +72,7 @@ if [[ $FILE_PICK ]]; then
                             script_files+=("$dir_path$FILE")
                         done
                     done
+                    # echo ${script_files[@]}
                     git_backup ${script_files[@]} $FILE_PICK
                     cd $curr_dir 
                 ;;
