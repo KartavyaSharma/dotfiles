@@ -16,15 +16,14 @@ bindkey ',.' autosuggest-clear
 
 # Plugin vars
 ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_DEFAULT_SESSION_NAME="home"
 
 source ~/.zplug/init.zsh
 
 # zplug 'wfxr/forgit'
 
+# Source OH MY ZSH
 source $ZSH/oh-my-zsh.sh
-
-# zsh aliases
-source ~/.config/zsh/aliases.zsh
 
 # fuck
 eval "$(thefuck --alias)"
@@ -94,3 +93,7 @@ export SCRIPTS="/Users/kartavyasharma/.config/zsh/scripts"
 
 # Typst
 export PATH="${HOME}/bin:${PATH}"
+
+############## DO NOT ADD ANYTHING BELOW THIS ##############
+# Sourcing aliases
+source ~/.config/zsh/aliases.zsh
