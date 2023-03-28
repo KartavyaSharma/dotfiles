@@ -19,9 +19,10 @@ gconf () {
 }
 
 git_backup () {
+    files=("$@")
     curr_dir=$(pwd)
     cd
-    gconf add "${1}" && gconf commit -m "Updated ${2}"
+    gconf add "${1}" && gconf commit # -m "Updated ${2}"
     cd $curr_dir
 }
 
@@ -42,9 +43,9 @@ pybrew_backup () {
     PYTHON_CONFIG="./.config/misc/python"
     pip3 freeze > "$PYTHON_CONFIG/python.txt"
 
-    git_backup "${CASKS}" $FILE_PICK
-    git_backup "${FORMULAE}" $FILE_PICK
-    git_backup "$PYTHON_CONFIG/python.txt" $FILE_PICK
+    files=($CASKS $FORMULAE $PYTHON_CONFIG)
+
+    git_backup ${files[@]}
 
     cd $prev_dir
 }
@@ -73,7 +74,7 @@ if [[ $FILE_PICK ]]; then
                         done
                     done
                     # echo ${script_files[@]}
-                    git_backup ${script_files[@]} $FILE_PICK
+                    git_backup ${script_files[@]} #$FILE_PICK
                     cd $curr_dir 
                 ;;
                 "Python & Brew Package Lists")
@@ -83,7 +84,8 @@ if [[ $FILE_PICK ]]; then
             esac
         ;;
         *)
-            git_backup ${FILES[$FILE_PICK]} $FILE_PICK
+            files=(${FILES[$FILE_PICK]})
+            git_backup ${files[@]} #$FILE_PICK
         ;;
     esac
     gconf push
