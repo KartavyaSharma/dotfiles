@@ -97,3 +97,4 @@ export PATH="${HOME}/bin:${PATH}"
 ############## DO NOT ADD ANYTHING BELOW THIS ##############
 # Sourcing aliases
 source ~/.config/zsh/aliases.zsh
+############################################################
