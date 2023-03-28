@@ -22,6 +22,7 @@ alias man=batman
 alias gl=glances
 alias sc=source
 alias task=dstask
+alias pdf=sioyek
 
 # Extensions
 alias lst="exa -l -h --tree --level=3 --ignore-glob="node_modules""
@@ -33,7 +34,6 @@ alias pyde="conda activate spyder-env && spyder"
 alias cex="conda deactivate"
 alias javainfo="/usr/libexec/java_home -V"
 alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
-alias pdf="sioyek --new-window"
 alias sioyek-keys="sioyek --execute-command keys_user"
 alias fbat="fzf --preview 'bat {-1} --color=always'"
 alias cpath="fbat | pbcopy"
