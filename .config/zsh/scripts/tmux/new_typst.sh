@@ -3,7 +3,7 @@
 # Set Typst file name
 FILE=$1
 # Set session and window names
-SESSION="Typst-${FILE}"
+SESSION="typst-${FILE}"
 # Set workspace location
 WORKSPACE="./Documents/typst/workspace/"
 # Activate command
