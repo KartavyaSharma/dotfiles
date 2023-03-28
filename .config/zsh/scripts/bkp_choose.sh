@@ -22,7 +22,7 @@ git_backup () {
     files=("$@")
     curr_dir=$(pwd)
     cd
-    gconf add "${1}" && gconf commit # -m "Updated ${2}"
+    gconf add "${files[@]}" && gconf commit # -m "Updated ${2}"
     cd $curr_dir
 }
 
