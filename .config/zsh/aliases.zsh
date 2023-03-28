@@ -68,9 +68,6 @@ alias fin="bash ~/documents/Code/Scripts/newfile.sh"
 alias nmd="$SCRIPTS/pandoc_markdown.sh"
 alias bkp="$SCRIPTS/bkp_choose.sh"
 
-# Synth Shell 
-# source "$SCRIPTS/synth.sh"
-
 # tmux scripts
 alias init_csm="$SCRIPTS/tmux/init_csm.sh"
 alias resume="$SCRIPTS/tmux/resume.sh"
@@ -151,7 +148,7 @@ sd () {
     fi
 }
 
-# copy any file path on ~, narrow search by directory, then by files
+# return any file path on ~, narrow search by directory, then by files
 gpath () {
     curr_dir=$(pwd)
     find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
