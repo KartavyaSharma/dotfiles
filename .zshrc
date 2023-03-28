@@ -91,3 +91,6 @@ export BATPIPE=color
 
 # Scripts
 export SCRIPTS="/Users/kartavyasharma/.config/zsh/scripts"
+
+# Typst
+export PATH="${HOME}/bin:${PATH}"
