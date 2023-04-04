@@ -21,7 +21,7 @@ if [[ "$SESSIONEXISTS" = "" ]]; then
     # Send activation command to all
     "$SCRIPTS"/tmux/tmux_sendall.sh $SESSION "$ACTIVATE"
     # Run pane/window specific commands
-    tmux send-keys -t $SESSION.1 "pie manage.py runserver" Enter
+    tmux send-keys -t $SESSION.1 "python manage.py runserver" Enter
     tmux send-keys -t $SESSION:$W1.0 "pie manage.py show_urls" Enter
     tmux send-keys -t $SESSION:$W1.1 "git fetch" Enter
     tmux send-keys -t $SESSION.0 vf Enter
