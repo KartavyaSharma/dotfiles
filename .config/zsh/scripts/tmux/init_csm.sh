@@ -4,8 +4,8 @@
 SESSION="csm_web"
 W1="urls_fetch"
 
-BASE="~/Documents/berkeley/extracurricular/clubs/CSM/repo"
-MANAGED="$BASE/csm_web/csm_web/"
+BASE="~/Documents/berkeley/extracurricular/clubs/CSM/csm_web"
+MANAGED="$BASE/csm_web/"
 ACTIVATE="cdir $BASE && sc env/bin/activate && cdir $MANAGED"
 
 SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
@@ -22,7 +22,7 @@ if [[ "$SESSIONEXISTS" = "" ]]; then
     "$SCRIPTS"/tmux/tmux_sendall.sh $SESSION "$ACTIVATE"
     # Run pane/window specific commands
     tmux send-keys -t $SESSION.1 "python manage.py runserver" Enter
-    tmux send-keys -t $SESSION:$W1.0 "pie manage.py show_urls" Enter
+    tmux send-keys -t $SESSION:$W1.0 "python manage.py show_urls" Enter
     tmux send-keys -t $SESSION:$W1.1 "git fetch" Enter
     tmux send-keys -t $SESSION.0 vf Enter
     # Switch to main editor window
