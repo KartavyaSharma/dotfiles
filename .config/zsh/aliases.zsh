@@ -26,7 +26,6 @@ alias pdf=sioyek
 
 # Extensions
 alias lst="exa -l -h --tree --level=3 --ignore-glob=\"node_modules|env\""
-alias game="watch -n 0.1 sudo ifconfig awdl0 down"
 alias cpcomp="g++ -std=c++11 -o a __master.cpp && ./a"
 alias ls="exa -l -h --sort=modified"
 alias lsty="exa -l -h --sort=name"
@@ -43,6 +42,7 @@ alias saf=open -a "Safari"
 alias ktheme="kitty +kitten themes --reload-in=all ${@}"
 alias tre="tmux rename-session ${@}"
 alias kll="pkill -f ${@}"
+# alias game="watch -n 0.1 sudo ifconfig awdl0 down"
 
 # Fast download copy/move
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
@@ -73,6 +73,7 @@ alias bkp="$SCRIPTS/bkp_choose.sh"
 alias init_csm="$SCRIPTS/tmux/init_csm.sh"
 alias resume="$SCRIPTS/tmux/resume.sh"
 alias neetcode="$SCRIPTS/tmux/neetcode.sh"
+alias game="$SCRIPTS/tmux/game.sh"
 
 # Compiled binaries
 alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
