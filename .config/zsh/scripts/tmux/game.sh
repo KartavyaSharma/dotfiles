@@ -12,6 +12,8 @@ if [[ "$SESSIONEXISTS" = "" ]]; then
     # Initialize window
     tmux new -s $SESSION -d
     tmux send-keys -t $SESSION.0 " echo "${GETPASS}" | watch -n 0.1 sudo -S ifconfig awdl0 down" Enter
+    # Send confirmation
+    echo "Service daemon started."
 else
     echo "Service already running"
     gum confirm "Kill service?" && tmux kill-session -t $SESSION
