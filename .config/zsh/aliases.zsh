@@ -42,6 +42,8 @@ alias saf=open -a "Safari"
 alias ktheme="kitty +kitten themes --reload-in=all ${@}"
 alias tre="tmux rename-session ${@}"
 alias kll="pkill -f ${@}"
+
+# Retired
 # alias game="watch -n 0.1 sudo ifconfig awdl0 down"
 
 # Fast download copy/move
