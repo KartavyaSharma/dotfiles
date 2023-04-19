@@ -203,6 +203,11 @@ tlst () {
     tmux switch-client -t $SESSION || tmux attach -t $SESSION
 }
 
+txnew () {
+    tmux new-session -d -s $1
+    tmux switch -t $1
+}
+
 ################# TEMP SCRIPTS #################
 
 # temporary data 8 test scripts
