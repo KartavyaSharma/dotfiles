@@ -15,10 +15,9 @@ def validate(password=""):
     salted = str(password) + salt
     # Hash salted using hashlib
     hashed = hashlib.md5(salted.encode()).hexdigest()
-    if hashed != hash:
-        print(0)
-    else:
-        print(1)
+    if hashed == hash:
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
