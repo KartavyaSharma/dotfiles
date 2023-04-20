@@ -12,7 +12,7 @@ if [[ "$SESSIONEXISTS" = "" ]]; then
     # Check validity of password
     curr_dir=$(pwd)
     cd && cd $SCRIPTS/utils/validate_pass/
-    valid=$(python3 pass_check.py --password=$GETPASS)
+    valid=$(python3 validate.py --password=$GETPASS)
     if [[ $valid = 1 ]]; then    
         # Initialize window
         tmux new -s $SESSION -d
