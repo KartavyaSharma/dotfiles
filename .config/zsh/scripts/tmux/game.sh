@@ -11,7 +11,7 @@ if [[ "$SESSIONEXISTS" = "" ]]; then
     GETPASS=$(gum input --password --placeholder "Enter sudo password")
     # Check validity of password
     curr_dir=$(pwd)
-    cd && cd $SCRIPTS/game
+    cd && cd $SCRIPTS/utils/validate_pass/
     valid=$(python3 pass_check.py --password=$GETPASS)
     if [[ $valid = 1 ]]; then    
         # Initialize window
