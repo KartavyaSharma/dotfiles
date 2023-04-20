@@ -75,7 +75,7 @@ alias bkp="$SCRIPTS/bkp_choose.sh"
 alias init_csm="$SCRIPTS/tmux/init_csm.sh"
 alias resume="$SCRIPTS/tmux/resume.sh"
 alias neetcode="$SCRIPTS/tmux/neetcode.sh"
-alias game="$SCRIPTS/game/game.sh"
+alias game="$SCRIPTS/tmux/game.sh"
 
 # Compiled binaries
 alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
