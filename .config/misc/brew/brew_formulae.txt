@@ -9,6 +9,8 @@ bat-extras
 bazelisk
 bdw-gc
 berkeley-db
+bib-tool
+black
 bottom
 brotli
 c-ares
@@ -18,6 +20,7 @@ cairo
 capstone
 cask
 cdrtools
+cffi
 chntpw
 coreutils
 cscope
@@ -118,7 +121,6 @@ llvm@12
 lua
 lua@5.3
 luajit
-luajit-openresty
 luv
 lz4
 lzo
@@ -130,6 +132,7 @@ mongosh
 mpdecimal
 mpfr
 msgpack
+mupdf-tools
 ncurses
 neovim
 netpbm
@@ -159,12 +162,12 @@ prettierd
 pycparser
 pygments
 python-tk@3.9
-python@3.10
 python@3.11
 python@3.9
 qemu
 readline
 reattach-to-user-namespace
+redis
 ripgrep
 rizin
 ruby
