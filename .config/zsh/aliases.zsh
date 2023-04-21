@@ -203,9 +203,16 @@ tlst () {
     tmux switch-client -t $SESSION || tmux attach -t $SESSION
 }
 
-txnew () {
+tn () {
     tmux new-session -d -s $1
     tmux switch -t $1
+}
+
+sm () {
+    curr_dir=$(pwd)
+    cd && cd $SCRIPTS/tmux/session_management/
+    python3 session_manager_script.py
+    cd && cd $curr_dir
 }
 
 ################# TEMP SCRIPTS #################
