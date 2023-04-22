@@ -23,8 +23,11 @@ def create():
             "gum input --placeholder \"Enter extension, if any.\"",
             shell=True, check=True, text=True, stdout=subprocess.PIPE
         )
+        extension = "_" + extension.stdout.strip()
+        if extension == "_":
+            extension = ""
         # Construct final session name
-        final_session_name = chosen + "_" + extension.stdout.strip()
+        final_session_name = chosen + extension
     except Exception:
         # Ask for custom session name
         custom_name = subprocess.run(
