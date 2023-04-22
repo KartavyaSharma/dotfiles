@@ -24,8 +24,7 @@ def create():
             shell=True, check=True, text=True, stdout=subprocess.PIPE
         )
         extension = "_" + extension.stdout.strip()
-        if extension == "_":
-            extension = ""
+        extension = "" if extension == "_" else extension
         # Construct final session name
         final_session_name = chosen + extension
     except Exception:
