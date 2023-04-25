@@ -35,8 +35,7 @@ def create():
 
     # Create new tmux session with final name
     create_subprocess(f"tmux new-session -d -s \"{final_session_name}\""
-                      f"&& tmux switch -t \"{final_session_name}\""
-                      )
+                      f"&& tmux switch -t \"{final_session_name}\"")
     print("Created new tmux session: " + final_session_name)
 
 
