@@ -41,7 +41,7 @@ eval "$(zoxide init zsh)"
 eval "$(batpipe)"
 
 # ...
-eval $(thefuck --alias FUCK)
+eval $(thefuck --alias fk)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -93,6 +93,9 @@ export SCRIPTS="/Users/kartavyasharma/.config/zsh/scripts"
 
 # Typst
 export PATH="${HOME}/bin:${PATH}"
+
+# Mongo
+export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
 
 ############## DO NOT ADD ANYTHING BELOW THIS ##############
 # Sourcing aliases
