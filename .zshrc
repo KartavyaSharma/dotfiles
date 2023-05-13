@@ -97,6 +97,9 @@ export PATH="${HOME}/bin:${PATH}"
 # Mongo
 export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
 
+# Omnisharp
+export DOTNET_ROOT="/usr/local/share/dotnet/"
+
 ############## DO NOT ADD ANYTHING BELOW THIS ##############
 # Sourcing aliases
 source ~/.config/zsh/aliases.zsh
