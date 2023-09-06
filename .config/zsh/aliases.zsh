@@ -42,6 +42,7 @@ alias saf=open -a "Safari"
 alias ktheme="kitty +kitten themes --reload-in=all ${@}"
 alias tre="tmux rename-session ${@}"
 alias kll="pkill -f ${@}"
+alias japp="./~/Documents/Code/trapp/start.sh"
 
 # Retired
 # alias game="watch -n 0.1 sudo ifconfig awdl0 down"
@@ -70,12 +71,15 @@ alias fin="bash ~/documents/Code/Scripts/newfile.sh"
 # Scripts
 alias nmd="$SCRIPTS/pandoc_markdown.sh"
 alias bkp="$SCRIPTS/bkp_choose.sh"
+alias cecho="$SCRIPTS/utils/echo/echo.sh"
 
 # tmux scripts
 alias init_csm="$SCRIPTS/tmux/init_csm.sh"
 alias resume="$SCRIPTS/tmux/resume.sh"
 alias neetcode="$SCRIPTS/tmux/neetcode.sh"
 alias game="$SCRIPTS/tmux/game.sh"
+alias setup_hive="$SCRIPTS/tmux/hive.sh"
+alias linuxvm="$SCRIPTS/tmux/linuxvm.sh"
 
 # Compiled binaries
 alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
@@ -222,4 +226,24 @@ fix_tests () {
     for file in tests/*.py; do \
         { echo 'OK_FORMAT = True'; cat "$file" } > "$file.tmp" && mv "$file.tmp" "$file"
     done
+}
+
+# temporary cs161 scripts
+hive () {
+    ssh "cs161-aam@hive${1}.cs.berkeley.edu"
+}
+
+# Decal Linux VM Scripts
+
+linux () {
+    cecho -c yellow -t "WARNING: You are running the Azure Linux VM w/o the appropriate start/stop wrapper. This may lead to unintentional charges on your Azure account."
+    ssh -i ~/.ssh/linux-sys-admin_key.pem kurt@20.114.61.68
+}
+
+dvm () {
+    ssh kartavya@kartavya.decal.xcf.sh
+}
+
+scplinux () {
+    scp -i ~/.ssh/linux-sys-admin_key.pem $1 kurt@20.114.61.68:$2
 }
