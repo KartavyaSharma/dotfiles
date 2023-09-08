@@ -80,7 +80,7 @@ alias resume="$SCRIPTS/tmux/resume.sh"
 alias neetcode="$SCRIPTS/tmux/neetcode.sh"
 alias game="$SCRIPTS/tmux/game.sh"
 alias setup_hive="$SCRIPTS/tmux/hive.sh"
-alias linuxvm="$SCRIPTS/tmux/linuxvm.sh"
+alias linuxvm="sc $SCRIPTS/tmux/linuxvm.sh"
 
 # Compiled binaries
 alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
@@ -138,19 +138,35 @@ gdiff () {
 
 # search directories globally or locally
 sd () {
-    g_or_l=$(gum choose "Global" "Local")
+    g_or_l=$(gum choose "Global (~)" "Local (.)" "System (/)")
     base_dir="~"
-    if [[ $g_or_l = "Global" ]]; then
+    echo $g_or_l
+    if [[ $g_or_l = "Global (~)" ]]; then
         find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
-    elif [[ $g_or_l = "Local" ]] then
+    elif [[ $g_or_l = "Local (.)" ]]; then
         find_out=$(fd --hidden --type directory --base-directory . | fzf)
+    elif [[ $g_or_l = "System (/)" ]]; then
+        cecho -c yellow -t "WARNING: You are searching the entire system. This may take a while"
+        cecho -c yellow -t "This operation needs sudo privilages"
+        # Get sudo password
+        GETPASS=$(gum input --password --placeholder "Enter sudo password")
+        # Check validity of password
+        valid=$(python3 $SCRIPTS/utils/validate_pass/validate.py --password=$GETPASS)
+        if [[ $valid = 1 ]]; then    
+            find_out=$(echo $GETPASS | sudo -S fd --hidden --type directory --max-depth 8 --base-directory / | fzf)
+        else
+            echo "Incorrect sudo password."
+        fi
     fi
     curr_dir=$(pwd)
+    echo $find_out
     if [[ $find_out ]]; then
         if [[ $g_or_l = "Global" ]]; then
             cdir ~/$find_out
         elif [[ $g_or_l = "Local" ]]; then
             cdir ./$find_out
+        elif [[ $g_or_l = "System" ]]; then
+            cdir $find_out
         fi
     else
         cd $curr_dir
@@ -229,7 +245,7 @@ fix_tests () {
     done
 }
 
-# temporary cs161 scripts
+# temporary cs161 scripts summer 2023
 hive () {
     ssh "cs161-aam@hive${1}.cs.berkeley.edu"
 }
