@@ -8,6 +8,7 @@ SESSION="linuxvm"
 
 RESOURCE_NAME=$AZRES
 VM_NAME=$LVMACHNAME
+VMKEY=$LVMKEY
 
 START_VM="az vm start --name $VM_NAME -g $RESOURCE_NAME"
 STOP_VM="az vm stop --name $VM_NAME -g $RESOURCE_NAME"
