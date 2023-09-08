@@ -67,38 +67,18 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 [ -f "/Users/kartavyasharma/.ghcup/env" ] && source "/Users/kartavyasharma/.ghcup/env" # ghcup-env
 
+# Java Environment
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
-export PATH="/Users/kartavyasharma/Downloads/apache-maven-3.8.7/bin:$PATH"
-export DATA_PROJ="/Users/kartavyasharma/Documents/berkeley/Academics/sp23/cs186/projects/"
+############## DO NOT MOVE THIS BLOCK ######################
+# Sourcing env variables
+source ~/.config/zsh/.env.sh
+############################################################
 
-# TMUX theme options
-export ZSH_DARK=1
-
-# Security Lists 
-export SEC_LIST="/Users/kartavyasharma/documents/Code/wordlists/SecLists"
-
-# Word Lists
-export WORD_LIST="/Users/kartavyasharma/documents/Code/wordlists/english-words"
-
-# Editor Flag
-export EDITOR="nvim"
-
-# Batpipe Colors
-export BATPIPE=color
-
-# Scripts
-export SCRIPTS="/Users/kartavyasharma/.config/zsh/scripts"
-
-# Typst
-export PATH="${HOME}/bin:${PATH}"
-
-# Mongo
-export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
-
-# Omnisharp
-export DOTNET_ROOT="/usr/local/share/dotnet/"
+# Nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ############## DO NOT ADD ANYTHING BELOW THIS ##############
 # Sourcing aliases
