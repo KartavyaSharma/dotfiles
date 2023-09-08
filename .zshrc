@@ -72,7 +72,7 @@ export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
 ############## DO NOT MOVE THIS BLOCK ######################
-# Sourcing env variables
+# Sourcing environment variables
 source ~/.config/zsh/.env.sh
 ############################################################
 
