@@ -1,4 +1,7 @@
+background-music
 db-browser-for-sqlite
+dotnet-sdk
 fig
 font-fira-code
+powershell
 sioyek
