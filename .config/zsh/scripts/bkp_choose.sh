@@ -59,7 +59,6 @@ if [[ $FILE_PICK ]]; then
             cd "${FILES[$FILE_PICK]}"
             case "$FILE_PICK" in
                 "Scripts")
-                    $SCRIPTS/utils/echo/echo.sh -c yellow -t "This only backs up .sh scripts 1 level deep in the scripts directory."
                     glob_path="${FILES[$FILE_PICK]}"
                     # Add all files in $SCRIPTS
                     declare -a script_files
@@ -77,6 +76,23 @@ if [[ $FILE_PICK ]]; then
                     # echo ${script_files[@]}
                     git_backup ${script_files[@]} #$FILE_PICK
                     cd $curr_dir 
+                    # redeclare empty script_files
+                    declare -a script_files
+                    $SCRIPTS/utils/echo/echo.sh -c yellow -t "Only backed up .sh scripts 1 level deep in the scripts directory."
+                    $SCRIPTS/utils/echo/echo.sh -c yellow -t "Do you want to back up other files?"
+                    opt_sel=$(gum choose "Yes" "No")
+                    if [[ $opt_sel = "Yes" ]]; then
+                        while :
+                        do
+                            curr_file_sel=$(gum file $SCRIPTS)
+                            if [[ $curr_file_sel ]]; then
+                                script_files+=(${curr_file_sel})
+                            else
+                                break
+                            fi
+                        done
+                    fi
+                    git_backup ${script_files[@]} #$FILE_PICK
                 ;;
                 "Python & Brew Package Lists")
                     pybrew_backup
