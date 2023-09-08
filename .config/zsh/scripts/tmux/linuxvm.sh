@@ -6,8 +6,8 @@ CURR=$(tmux display-message -p '#S')
 # Set session and window names
 SESSION="linuxvm"
 
-RESOURCE_NAME="linux_system_admin_decal"
-VM_NAME="linux-sys-admin"
+RESOURCE_NAME=$AZRES
+VM_NAME=$LVMACHNAME
 
 START_VM="az vm start --name $VM_NAME -g $RESOURCE_NAME"
 STOP_VM="az vm stop --name $VM_NAME -g $RESOURCE_NAME"
