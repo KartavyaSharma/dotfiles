@@ -25,7 +25,7 @@ alias task=dstask
 alias pdf=sioyek
 
 # Extensions
-alias lst="exa -l -h --tree --level=3 --ignore-glob=\"node_modules|env\""
+alias lst="exa -l -h --tree --level=3 --ignore-glob=\"node_modules|env|build|dist\""
 alias cpcomp="g++ -std=c++11 -o a __master.cpp && ./a"
 alias ls="exa -l -h --sort=modified"
 alias lsty="exa -l -h --sort=name"
@@ -237,7 +237,7 @@ hive () {
 
 linux () {
     cecho -c yellow -t "WARNING: You are running the Azure Linux VM w/o the appropriate start/stop wrapper. This may lead to unintentional charges on your Azure account."
-    ssh -i ~/.ssh/linux-sys-admin_key.pem kurt@20.114.61.68
+    ssh -i ~/.ssh/linux-sys-admin_key.pem kurt@$LVMIP
 }
 
 dvm () {
@@ -245,5 +245,5 @@ dvm () {
 }
 
 scplinux () {
-    scp -i ~/.ssh/linux-sys-admin_key.pem $1 kurt@20.114.61.68:$2
+    scp -i ~/.ssh/linux-sys-admin_key.pem $1 kurt@$LVMIP:$2
 }
