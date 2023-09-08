@@ -238,7 +238,7 @@ hive () {
 
 linux () {
     cecho -c yellow -t "WARNING: You are running the Azure Linux VM w/o the appropriate start/stop wrapper. This may lead to unintentional charges on your Azure account."
-    ssh -i ~/.ssh/linux-sys-admin_key.pem kurt@$LVMIP
+    ssh -i $LVMKEY kurt@$LVMIP
 }
 
 dvm () {
@@ -246,5 +246,5 @@ dvm () {
 }
 
 scplinux () {
-    scp -i ~/.ssh/linux-sys-admin_key.pem $1 kurt@$LVMIP:$2
+    scp -i $LVMKEY $1 kurt@$LVMIP:$2
 }
