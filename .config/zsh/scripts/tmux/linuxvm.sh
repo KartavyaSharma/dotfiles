@@ -14,7 +14,7 @@ STOP_VM="az vm stop --name $VM_NAME -g $RESOURCE_NAME"
 DE_VM="az vm deallocate --name $VM_NAME -g $RESOURCE_NAME"
 PREV_SESH="tmux switch -t $CURR"
 KILL_SESH="tmux kill-session -t $SESSION"
-LOGINTO_VM="$START_VM && ssh -i ~/.ssh/linux-sys-admin_key.pem kurt@20.114.61.68 && $PREV_SESH && $STOP_VM && $DE_VM && $KILL_SESH"
+LOGINTO_VM="$START_VM && ssh -i ~/.ssh/linux-sys-admin_key.pem kurt@$LVMIP && $PREV_SESH && $STOP_VM && $DE_VM && $KILL_SESH"
 
 SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
 
