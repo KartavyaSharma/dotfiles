@@ -62,6 +62,7 @@ alias nconf="vim ~/.config/nvim/init.vim"
 
 # Dotfile backup
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias pconf="/usr/bin/git --git-dir=$HOME/.pcfg/ --work-tree=$HOME"
 alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && config push"
 
 # Competitive programming scripts
