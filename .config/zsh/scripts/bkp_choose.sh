@@ -59,6 +59,7 @@ if [[ $FILE_PICK ]]; then
             cd "${FILES[$FILE_PICK]}"
             case "$FILE_PICK" in
                 "Scripts")
+                    cecho -c yellow -t "This only backs up .sh scripts 1 level deep in the scripts directory."
                     glob_path="${FILES[$FILE_PICK]}"
                     # Add all files in $SCRIPTS
                     declare -a script_files
