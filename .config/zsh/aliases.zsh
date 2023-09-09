@@ -138,15 +138,18 @@ gdiff () {
 
 # search directories globally or locally
 sd () {
+    cecho -c green -t "Choose scope of search (default: Global (~) [fast])"
     declare -a opts
-    opts=("Global (~)" "Local (.)" "System (/)")
+    opts=("Global (~) [fast]" "Global (~)" "Local (.)" "System (/) [slow]")
     g_or_l=$(gum choose ${opts[@]})
     base_dir="~"
     if [[ $g_or_l = "${opts[1]}" ]]; then
-        find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
+        find_out=$(fd --hidden --type directory --base-directory ~ --exclude .git --exclude miniconda3 --exclude node_modules --exclude Application\ Support --exclude .gradle --exclude '*cache*' --exclude 'python*' --exclude WebKit --exclude .vscode --exclude org --exclude '*env' --exclude bin | fzf)
     elif [[ $g_or_l = "${opts[2]}" ]]; then
-        find_out=$(fd --hidden --type directory --base-directory . | fzf)
+        find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
     elif [[ $g_or_l = "${opts[3]}" ]]; then
+        find_out=$(fd --hidden --type directory --base-directory . | fzf)
+    elif [[ $g_or_l = "${opts[4]}" ]]; then
         cecho -c yellow -t "WARNING: You are searching the entire system. This may take a while"
         cecho -c yellow -t "This operation needs sudo privilages"
         # Get sudo password
@@ -158,17 +161,20 @@ sd () {
         else
             echo "Incorrect sudo password."
         fi
+    else
+        cecho -c red -t "No scope selected!"
     fi
     curr_dir=$(pwd)
     if [[ $find_out ]]; then
-        if [[ $g_or_l = ${opts[1]} ]]; then
+        if [[ $g_or_l = ${opts[1]} || $g_or_l = ${opts[2]} ]]; then
             cdir ~/$find_out
-        elif [[ $g_or_l = ${opts[2]} ]]; then
-            cdir ./$find_out
         elif [[ $g_or_l = ${opts[3]} ]]; then
-            cdir $find_out
+            cdir ./$find_out
+        elif [[ $g_or_l = ${opts[4]} ]]; then
+            cdir /$find_out
         fi
     else
+        cecho -c red -t "No directory selected!"
         cd $curr_dir
     fi
 }
