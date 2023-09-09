@@ -157,7 +157,7 @@ sd () {
         # Check validity of password
         valid=$(python3 $SCRIPTS/utils/validate_pass/validate.py --password=$GETPASS)
         if [[ $valid = 1 ]]; then    
-            find_out=$(echo $GETPASS | sudo -S fd --hidden --type directory --max-depth 8 --base-directory / | fzf)
+            find_out=$(echo $GETPASS | sudo -S fd --hidden --type directory --max-depth 20 --base-directory / | fzf)
         else
             echo "Incorrect sudo password."
         fi
