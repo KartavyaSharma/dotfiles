@@ -138,14 +138,15 @@ gdiff () {
 
 # search directories globally or locally
 sd () {
-    g_or_l=$(gum choose "Global (~)" "Local (.)" "System (/)")
+    declare -a opts
+    opts=("Global (~)" "Local (.)" "System (/)")
+    g_or_l=$(gum choose ${opts[@]})
     base_dir="~"
-    echo $g_or_l
-    if [[ $g_or_l = "Global (~)" ]]; then
+    if [[ $g_or_l = "${opts[1]}" ]]; then
         find_out=$(fd --hidden --type directory --base-directory ~ | fzf)
-    elif [[ $g_or_l = "Local (.)" ]]; then
+    elif [[ $g_or_l = "${opts[2]}" ]]; then
         find_out=$(fd --hidden --type directory --base-directory . | fzf)
-    elif [[ $g_or_l = "System (/)" ]]; then
+    elif [[ $g_or_l = "${opts[3]}" ]]; then
         cecho -c yellow -t "WARNING: You are searching the entire system. This may take a while"
         cecho -c yellow -t "This operation needs sudo privilages"
         # Get sudo password
@@ -159,13 +160,12 @@ sd () {
         fi
     fi
     curr_dir=$(pwd)
-    echo $find_out
     if [[ $find_out ]]; then
-        if [[ $g_or_l = "Global" ]]; then
+        if [[ $g_or_l = ${opts[1]} ]]; then
             cdir ~/$find_out
-        elif [[ $g_or_l = "Local" ]]; then
+        elif [[ $g_or_l = ${opts[2]} ]]; then
             cdir ./$find_out
-        elif [[ $g_or_l = "System" ]]; then
+        elif [[ $g_or_l = ${opts[3]} ]]; then
             cdir $find_out
         fi
     else
