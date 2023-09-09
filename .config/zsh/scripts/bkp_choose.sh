@@ -78,10 +78,11 @@ if [[ $FILE_PICK ]]; then
                     cd $curr_dir 
                     # redeclare empty script_files
                     declare -a script_files
-                    $SCRIPTS/utils/echo/echo.sh -c yellow -t "Only backed up .sh scripts 1 level deep in the scripts directory."
+                    $SCRIPTS/utils/echo/echo.sh -c yellow -t "Only backed up `.sh` scripts at a level 1 depth in the scripts directory."
                     $SCRIPTS/utils/echo/echo.sh -c yellow -t "Do you want to back up other files?"
                     opt_sel=$(gum choose "Yes" "No")
                     if [[ $opt_sel = "Yes" ]]; then
+                        echo "Select multiple files from the \$SCRIPTS directory. Press `esc` to quit and commit any selected files."
                         while :
                         do
                             curr_file_sel=$(gum file $SCRIPTS)
