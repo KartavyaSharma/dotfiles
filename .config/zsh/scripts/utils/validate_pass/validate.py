@@ -4,19 +4,12 @@ import os
 
 
 def validate(password=""):
-    # Get salt file
-    salt = ""
-    with open(os.path.dirname(__file__) + "/salt", "r") as f:
-        salt = [line for line in f.readlines()][0].strip()
-    # Get compare hash
-    hash = ""
-    with open(os.path.dirname(__file__) + "/enc_sudo", "r") as f:
-        hash = [line for line in f.readlines()][0].strip()
-    # Create salted string
-    salted = str(password) + salt
-    # Hash salted using hashlib
-    hashed = hashlib.md5(salted.encode()).hexdigest()
-    if hashed == hash:
+    if type(password) != str:
+        password = str(password)
+    m = hashlib.sha256()
+    m.update(password.encode())
+    generated_hash = m.hexdigest()
+    if generated_hash == os.environ["PWDHASH"]:
         return 1
     return 0
 
