@@ -37,12 +37,11 @@ alias sioyek-keys="sioyek --execute-command keys_user"
 alias fbat="fzf --preview 'bat {-1} --color=always'"
 alias cpath="fbat | pbcopy"
 alias sbat="fbat --exec bat {}"
-alias gcpy="gpath | pbcopy"
+alias gcopy="gpath | pbcopy"
 alias saf=open -a "Safari"
 alias ktheme="kitty +kitten themes --reload-in=all ${@}"
 alias tre="tmux rename-session ${@}"
 alias kll="pkill -f ${@}"
-alias japp="./~/Documents/Code/trapp/start.sh"
 
 # Retired
 # alias game="watch -n 0.1 sudo ifconfig awdl0 down"
@@ -209,7 +208,18 @@ gmv () {
 
 # file preview for vim
 vf () {
-    selected=$(fzf --preview 'bat {-1} --color=always')
+    selected=$(fd --hidden --exclude .git --exclude miniconda3 --exclude node_modules --exclude Application\ Support --exclude .gradle --exclude '*cache*' --exclude 'python*' --exclude WebKit --exclude .vscode --exclude org --exclude '*env' --exclude bin | fzf --preview 'bat {-1} --color=always')
+    curr_dir=$(pwd)
+    if [[ $selected ]]; then
+        v $selected
+    else
+        cd $curr_dir
+    fi
+}
+
+# Less restrictive vf
+vfo () {
+    selected=$(fd --hidden | fzf --preview 'bat {-1} --color=always')
     curr_dir=$(pwd)
     if [[ $selected ]]; then
         v $selected
@@ -269,4 +279,11 @@ dvm () {
 
 scplinux () {
     scp -i $LVMKEY $1 kurt@$LVMIP:$2
+}
+
+logjob () {
+    cwd=$(pwd)
+    cd ~/Documents/Code/trapp
+    source start.sh
+    cd $cwd
 }
