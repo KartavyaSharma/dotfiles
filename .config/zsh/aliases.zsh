@@ -208,7 +208,7 @@ gmv () {
 
 # file preview for vim
 vf () {
-    selected=$(fd --hidden --exclude .git --exclude miniconda3 --exclude node_modules --exclude Application\ Support --exclude .gradle --exclude '*cache*' --exclude 'python*' --exclude WebKit --exclude .vscode --exclude org --exclude '*env' --exclude bin | fzf --preview 'bat {-1} --color=always')
+    selected=$(fd --hidden --exclude .git --exclude miniconda3 --exclude node_modules --exclude Application\ Support --exclude .gradle --exclude '*cache*' --exclude WebKit --exclude .vscode --exclude org --exclude '*env' --exclude bin | fzf --preview 'bat {-1} --color=always')
     curr_dir=$(pwd)
     if [[ $selected ]]; then
         v $selected
