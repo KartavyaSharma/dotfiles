@@ -208,18 +208,26 @@ gmv () {
 
 # file preview for vim
 vf () {
-    selected=$(fd --hidden --exclude .git --exclude miniconda3 --exclude node_modules --exclude Application\ Support --exclude .gradle --exclude '*cache*' --exclude WebKit --exclude .vscode --exclude org --exclude '*env' --exclude bin | fzf --preview 'bat {-1} --color=always')
-    curr_dir=$(pwd)
-    if [[ $selected ]]; then
-        v $selected
-    else
-        cd $curr_dir
+    selected=""
+    for flag in "$@"; do
+        case $flag in
+            -l | --loose) # Start
+                selected=$(fd --hidden | fzf --preview 'bat {-1} --color=always')
+                ;;
+            -h | --help) # Help
+                echo "Usage: vf [OPTION]"
+                echo "Options:"
+                echo "  -l    Loose search"
+                echo "  -h    Display this help message"
+                echo "  *     Default search" 
+                ;;
+            /?)
+                ;;
+        esac
+    done
+    if [[ $selected = "" ]]; then
+        selected=$(fd --hidden --exclude .git --exclude miniconda3 --exclude node_modules --exclude Application\ Support --exclude .gradle --exclude '*cache*' --exclude WebKit --exclude .vscode --exclude org --exclude '*env' --exclude bin | fzf --preview 'bat {-1} --color=always')
     fi
-}
-
-# Less restrictive vf
-vfo () {
-    selected=$(fd --hidden | fzf --preview 'bat {-1} --color=always')
     curr_dir=$(pwd)
     if [[ $selected ]]; then
         v $selected
