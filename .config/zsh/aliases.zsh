@@ -307,10 +307,11 @@ csmrepo () {
                 cd $CSMDIR    
                 if [[ "$(docker info 2>&1)" =~ "Cannot connect to the Docker daemon" ]]; then
                     cecho -c red -t "Docker daemon not running." 1>&2
-                    cecho -c green -t "Starting Docker daemon..." 1>&2
                     open -gj -a "docker"
+                    gum spin -s line --title "Starting Docker daemon..." sleep 7
                 fi
                 docker compose up -d
+                gum spin -s line --title "Starting container..." sleep 5
                 dexec python3 csm_web/manage.py createtestdata
                 source $(poetry env info --path)/bin/activate
                 open http://localhost:8000/admin
@@ -319,7 +320,11 @@ csmrepo () {
                 cd $CSMDIR
                 docker compose down 
                 deactivate
-                osascript -e 'tell application "Docker" to quit'
+                docker ps -a -q | xargs docker stop
+                gum spin -s line --title "Stopping container..." sleep 5
+                docker ps -a -q | xargs docker rm
+                gum spin -s line --title "Removing container..." sleep 5
+                ps ax|grep -i docker|egrep -iv 'grep|com.docker.vmnetd'|awk '{print $1}'|xargs kill
                 cdir $curr
                 ;;
             /?)
