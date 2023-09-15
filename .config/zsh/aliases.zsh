@@ -307,12 +307,17 @@ dexec () {
 # Command to start and stop dev environment for CSM project
 csm () {
     curr=$(pwd)
+    if [[ $# -eq 0 ]]; then
+        cecho -c red -t "Required flags not found!"
+        csm -h
+        return
+    fi
     for flag in "$@"; do
         case $flag in
             -s | --start) # Start
                 cd $CSMDIR    
                 if [[ "$(docker info 2>&1)" =~ "Cannot connect to the Docker daemon" ]]; then
-                    cecho -c red -t "Docker daemon not running." 1>&2
+                    cecho -c red -t "Docker daemon not running."
                     open -gj -a "docker"
                     gum spin -s line --title "Starting Docker daemon..." sleep 7
                 fi
@@ -341,8 +346,10 @@ csm () {
                 echo "  -t    Terminate all docker processes"
                 echo "  -h    Display this help message"
                 ;;
-            /?)
-                cecho -c red -t "Invalid flag provided" 1>&2
+            *)
+                cecho -c red -t "Invalid flag provided!"
+                csm -h
+                return
                 ;;
         esac
     done
