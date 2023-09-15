@@ -42,6 +42,7 @@ alias saf=open -a "Safari"
 alias ktheme="kitty +kitten themes --reload-in=all ${@}"
 alias tre="tmux rename-session ${@}"
 alias kll="pkill -f ${@}"
+alias val="alias | python3 $SCRIPTS/utils/viewaliases"
 
 # Retired
 # alias game="watch -n 0.1 sudo ifconfig awdl0 down"
@@ -82,7 +83,7 @@ alias setup_hive="$SCRIPTS/tmux/hive.sh"
 alias linuxvm="sc $SCRIPTS/tmux/linuxvm.sh"
 
 # Compiled binaries
-alias ghidra="~/Documents/berkeley/extracurricular/clubs/berke1337/ghidra_10.2.3_PUBLIC/ghidraRun"
+alias ghidra="$GHIDRABIN"
 
 ################# QOL GENERAL SCRIPTS #################
 
