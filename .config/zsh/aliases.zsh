@@ -296,7 +296,7 @@ dexec () {
     docker compose exec django $@ 
 }
 
-csmrepo () {
+csm () {
     curr=$(pwd)
     while getopts "hst" flag; do
         case $flag in
