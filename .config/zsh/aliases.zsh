@@ -209,6 +209,9 @@ gmv () {
 # file preview for vim
 vf () {
     selected=""
+    if [[ $# -eq 0 ]]; then
+        selected=$(fd --hidden --exclude .git --exclude miniconda3 --exclude node_modules --exclude Application\ Support --exclude .gradle --exclude '*cache*' --exclude WebKit --exclude .vscode --exclude org --exclude '*env' --exclude bin | fzf --preview 'bat {-1} --color=always')
+    fi
     for flag in "$@"; do
         case $flag in
             -l | --loose) # Start
@@ -221,13 +224,8 @@ vf () {
                 echo "  -h    Display this help message"
                 echo "  *     Default search" 
                 ;;
-            /?)
-                ;;
         esac
     done
-    if [[ $selected = "" ]]; then
-        selected=$(fd --hidden --exclude .git --exclude miniconda3 --exclude node_modules --exclude Application\ Support --exclude .gradle --exclude '*cache*' --exclude WebKit --exclude .vscode --exclude org --exclude '*env' --exclude bin | fzf --preview 'bat {-1} --color=always')
-    fi
     curr_dir=$(pwd)
     if [[ $selected ]]; then
         v $selected
