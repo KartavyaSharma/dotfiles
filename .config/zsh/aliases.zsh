@@ -304,6 +304,7 @@ dexec () {
     docker compose exec django $@ 
 }
 
+# Command to start and stop dev environment for CSM project
 csm () {
     curr=$(pwd)
     for flag in "$@"; do
@@ -327,21 +328,21 @@ csm () {
                 docker compose down 
                 deactivate
                 docker ps -a -q | xargs docker stop
-                gum spin -s line --title "Stopping container..." sleep 5
+                gum spin -s line --title "Stopping containers..." sleep 5
                 docker ps -a -q | xargs docker rm
-                gum spin -s line --title "Removing container..." sleep 5
-                ps ax|grep -i docker|egrep -iv 'grep|com.docker.vmnetd'|awk '{print $1}'|xargs kill
+                gum spin -s line --title "Removing containers..." sleep 5
+                ps ax | grep -i docker | egrep -iv 'grep|com.docker.vmnetd' | awk '{print $1}' | xargs kill
                 cdir $curr
                 ;;
             -h | --help) # Help
                 echo "Usage: csm [OPTION]"
                 echo "Options:"
                 echo "  -s    Start CSM docker container"
-                echo "  -t    Terminate CSM docker container"
+                echo "  -t    Terminate all docker processes"
                 echo "  -h    Display this help message"
                 ;;
             /?)
-                cecho -c red -t "Invalid flag provided"
+                cecho -c red -t "Invalid flag provided" 1>&2
                 ;;
         esac
     done
