@@ -298,12 +298,9 @@ dexec () {
 
 csm () {
     curr=$(pwd)
-    while getopts "hst" flag; do
+    for flag in "$@"; do
         case $flag in
-            h) # Help
-                echo "Help is here!"
-                ;;
-            s) # Start
+            -s | --start) # Start
                 cd $CSMDIR    
                 if [[ "$(docker info 2>&1)" =~ "Cannot connect to the Docker daemon" ]]; then
                     cecho -c red -t "Docker daemon not running." 1>&2
@@ -315,8 +312,9 @@ csm () {
                 dexec python3 csm_web/manage.py createtestdata
                 source $(poetry env info --path)/bin/activate
                 open http://localhost:8000/admin
+                code .
                 ;;
-            t) # Terminate
+            -k | --kill) # Terminate
                 cd $CSMDIR
                 docker compose down 
                 deactivate
@@ -326,6 +324,13 @@ csm () {
                 gum spin -s line --title "Removing container..." sleep 5
                 ps ax|grep -i docker|egrep -iv 'grep|com.docker.vmnetd'|awk '{print $1}'|xargs kill
                 cdir $curr
+                ;;
+            -h | --help) # Help
+                echo "Usage: csm [OPTION]"
+                echo "Options:"
+                echo "  -s    Start CSM docker container"
+                echo "  -t    Terminate CSM docker container"
+                echo "  -h    Display this help message"
                 ;;
             /?)
                 cecho -c red -t "Invalid flag provided"
