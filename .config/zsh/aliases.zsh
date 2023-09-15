@@ -273,17 +273,58 @@ linux () {
     ssh -i $LVMKEY kurt@$LVMIP
 }
 
+# Login to decal vm
 dvm () {
     ssh kartavya@kartavya.decal.xcf.sh
 }
 
+# Move to linux vm
 scplinux () {
     scp -i $LVMKEY $1 kurt@$LVMIP:$2
 }
 
+# Log new job application
 logjob () {
     cwd=$(pwd)
     cd ~/Documents/Code/trapp
     source start.sh
     cd $cwd
+}
+
+# Execute command on CSM docker container
+dexec () {
+    docker compose exec django $@ 
+}
+
+csmrepo () {
+    curr=$(pwd)
+    while getopts "hst" flag; do
+        case $flag in
+            h) # Help
+                echo "Help is here!"
+                ;;
+            s) # Start
+                cd $CSMDIR    
+                if [[ "$(docker info 2>&1)" =~ "Cannot connect to the Docker daemon" ]]; then
+                    cecho -c red -t "Docker daemon not running." 1>&2
+                    cecho -c green -t "Starting Docker daemon..." 1>&2
+                    open -gj -a "docker"
+                fi
+                docker compose up -d
+                dexec python3 csm_web/manage.py createtestdata
+                source $(poetry env info --path)/bin/activate
+                open http://localhost:8000/admin
+                ;;
+            t) # Terminate
+                cd $CSMDIR
+                docker compose down 
+                deactivate
+                osascript -e 'tell application "Docker" to quit'
+                cdir $curr
+                ;;
+            /?)
+                cecho -c red -t "Invalid flag provided"
+                ;;
+        esac
+    done
 }
