@@ -25,10 +25,10 @@ alias task=dstask
 alias pdf=sioyek
 
 # Extensions
-alias lst="exa -l -h --tree --level=3 --ignore-glob=\"node_modules|env|build|dist\""
+alias lst="exa -l -h --tree --level=3 --sort=type -a --ignore-glob=\"node_modules|env|build|dist\""
 alias cpcomp="g++ -std=c++11 -o a __master.cpp && ./a"
-alias ls="exa -l -h --sort=modified"
-alias lsty="exa -l -h --sort=name"
+alias ls="exa -l -h --sort=modified --sort=type"
+alias lsn="exa -l -h --sort=name"
 alias pyde="conda activate spyder-env && spyder"
 alias cex="conda deactivate"
 alias javainfo="/usr/libexec/java_home -V"
@@ -305,10 +305,17 @@ dexec () {
 
 # Command to start and stop dev environment for CSM project
 csm () {
-    curr=$(pwd)
     if [[ $# -eq 0 ]]; then
         cecho -c red -t "Required flags not found!"
         csm -h
+        return
+    fi
+    if [[ -n $CSMDIR ]]; then
+        cecho -c red -t "\$CSMDIR variable not exposed."
+        echo "Run the following command in the root of the CSM repo:"
+        echo "export CSMDIR=$(pwd)"
+        echo "For a more persistent solution, from the root of the CSM repo, run:"
+        echo "echo \"export CSMDIR=\$(pwd)\" >> \$(echo ~/\$(echo \$(echo \$SHELL | awk 'BEGIN { FS = \"/\" } ; {print \$NF}') | awk '{print \".\" \$0}' | awk '{print \$0 \"rc\"}'))"
         return
     fi
     for flag in "$@"; do
@@ -317,26 +324,22 @@ csm () {
                 cd $CSMDIR    
                 if [[ "$(docker info 2>&1)" =~ "Cannot connect to the Docker daemon" ]]; then
                     cecho -c red -t "Docker daemon not running."
-                    open -gj -a "docker"
-                    gum spin -s line --title "Starting Docker daemon..." sleep 7
+                    colima start
                 fi
                 docker compose up -d
-                gum spin -s line --title "Starting container..." sleep 5
-                dexec python3 csm_web/manage.py createtestdata
                 source $(poetry env info --path)/bin/activate
-                open http://localhost:8000/admin
+                dexec python3 csm_web/manage.py createtestdata
+                dexec pytest csm_web
                 code .
+                open http://localhost:8000/admin
                 ;;
             -k | --kill) # Terminate
                 cd $CSMDIR
                 docker compose down 
                 deactivate
                 docker ps -a -q | xargs docker stop
-                gum spin -s line --title "Stopping containers..." sleep 5
                 docker ps -a -q | xargs docker rm
-                gum spin -s line --title "Removing containers..." sleep 5
-                ps ax | grep -i docker | egrep -iv 'grep|com.docker.vmnetd' | awk '{print $1}' | xargs kill
-                cdir $curr
+                colima stop
                 ;;
             -h | --help) # Help
                 echo "Usage: csm [OPTION]"
