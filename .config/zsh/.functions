@@ -54,6 +54,11 @@ getlog() {
     glog | gum choose | awk '{print $2}'
 }
 
+# pipe git show for a specific commit
+gshowc () {
+    git show $(getlog) | bat -l rs
+}
+
 # search directories globally or locally
 sd () {
     cecho -c green -t "Choose scope of search (default: Global (~) [fast])"
