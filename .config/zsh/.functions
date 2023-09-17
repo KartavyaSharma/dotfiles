@@ -1,95 +1,8 @@
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-################# ALIASES #################
-
-# General
-alias cl=clear
-alias vim=nvim
-alias v=vim
-alias git=hub
-alias br=links
-alias cr=cargo
-alias pie=python3
-alias ipy=ipython
-alias lg=lazygit
-alias de=deactivate
-alias cat=prettybat
-alias bgrep=batgrep
-alias man=batman
-alias gl=glances
-alias sc=source
-alias task=dstask
-alias pdf=sioyek
-
-# Extensions
-alias lst="exa -l -h --tree --level=3 --sort=type -a --ignore-glob=\"node_modules|env|build|dist\""
-alias cpcomp="g++ -std=c++11 -o a __master.cpp && ./a"
-alias ls="exa -l -h --sort=modified --sort=type"
-alias lsn="exa -l -h --sort=name"
-alias pyde="conda activate spyder-env && spyder"
-alias cex="conda deactivate"
-alias javainfo="/usr/libexec/java_home -V"
-alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
-alias sioyek-keys="sioyek --execute-command keys_user"
-alias fbat="fzf --preview 'bat {-1} --color=always'"
-alias cpath="fbat | pbcopy"
-alias sbat="fbat --exec bat {}"
-alias gcopy="gpath | pbcopy"
-alias saf=open -a "Safari"
-alias ktheme="kitty +kitten themes --reload-in=all ${@}"
-alias tre="tmux rename-session ${@}"
-alias kll="pkill -f ${@}"
-alias val="alias | python3 $SCRIPTS/utils/viewaliases"
-
-# Retired
-# alias game="watch -n 0.1 sudo ifconfig awdl0 down"
-
-# Fast download copy/move
-alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
-alias cpdw='cp $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
-
-# Dotfiles
-alias zsc="source ~/.zshrc"
-alias nplugdir="cd ~/.config/nvim/lua/configs"
-alias nplug="vim ~/.config/nvim/lua/plugins.lua"
-alias vconf="vim ~/.vimrc"
-alias zconf="vim ~/.zshrc"
-alias bconf="vim ~/.bashrc"
-alias nconf="vim ~/.config/nvim/init.vim"
-
-# Dotfile backup
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-alias pconf="/usr/bin/git --git-dir=$HOME/.pcfg/ --work-tree=$HOME"
-alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && config push"
-
-# Competitive programming scripts
-alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
-alias fin="bash ~/documents/Code/Scripts/newfile.sh"
-
-# Scripts
-alias nmd="$SCRIPTS/pandoc_markdown.sh"
-alias bkp="$SCRIPTS/bkp_choose.sh"
-alias cecho="$SCRIPTS/utils/echo/echo.sh"
-
-# tmux scripts
-alias init_csm="$SCRIPTS/tmux/init_csm.sh"
-alias resume="$SCRIPTS/tmux/resume.sh"
-alias neetcode="$SCRIPTS/tmux/neetcode.sh"
-alias game="$SCRIPTS/tmux/game.sh"
-alias setup_hive="$SCRIPTS/tmux/hive.sh"
-alias linuxvm="sc $SCRIPTS/tmux/linuxvm.sh"
-
-# Compiled binaries
-alias ghidra="$GHIDRABIN"
-
-################# QOL GENERAL SCRIPTS #################
+################# FUNCTIONS #################
 
 # cd + ls
 d () { z "$@" && exa -l -h --sort=modified;}
-cdir () { cd "$@" && exa -l -h --sort=modified;}
+cdir () { cd "$@" && exa -l -h -a --sort=modified;}
 
 # edit on create
 mkf () { touch "$@" && nvim "$@"}
@@ -115,7 +28,7 @@ cpp () {
 
 # rm alt
 del () {
-    mv "$@" ~/.Trash/
+    mv "$@" ~/.config/zsh/.trash/
 }
 
 # faster git
@@ -303,56 +216,3 @@ dexec () {
     docker compose exec django $@ 
 }
 
-# Command to start and stop dev environment for CSM project
-csm () {
-    if [[ $# -eq 0 ]]; then
-        cecho -c red -t "Required flags not found!"
-        csm -h
-        return
-    fi
-    if [[ -n $CSMDIR ]]; then
-        cecho -c red -t "\$CSMDIR variable not exposed."
-        echo "Run the following command in the root of the CSM repo:"
-        echo "export CSMDIR=$(pwd)"
-        echo "For a more persistent solution, from the root of the CSM repo, run:"
-        echo "echo \"export CSMDIR=\$(pwd)\" >> \$(echo ~/\$(echo \$(echo \$SHELL | awk 'BEGIN { FS = \"/\" } ; {print \$NF}') | awk '{print \".\" \$0}' | awk '{print \$0 \"rc\"}'))"
-        return
-    fi
-    for flag in "$@"; do
-        case $flag in
-            -s | --start) # Start
-                cd $CSMDIR    
-                if [[ "$(docker info 2>&1)" =~ "Cannot connect to the Docker daemon" ]]; then
-                    cecho -c red -t "Docker daemon not running."
-                    colima start
-                fi
-                docker compose up -d
-                source $(poetry env info --path)/bin/activate
-                dexec python3 csm_web/manage.py createtestdata
-                dexec pytest csm_web
-                code .
-                open http://localhost:8000/admin
-                ;;
-            -k | --kill) # Terminate
-                cd $CSMDIR
-                docker compose down 
-                deactivate
-                docker ps -a -q | xargs docker stop
-                docker ps -a -q | xargs docker rm
-                colima stop
-                ;;
-            -h | --help) # Help
-                echo "Usage: csm [OPTION]"
-                echo "Options:"
-                echo "  -s    Start CSM docker container"
-                echo "  -t    Terminate all docker processes"
-                echo "  -h    Display this help message"
-                ;;
-            *)
-                cecho -c red -t "Invalid flag provided!"
-                csm -h
-                return
-                ;;
-        esac
-    done
-}

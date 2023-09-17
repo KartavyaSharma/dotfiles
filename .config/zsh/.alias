@@ -1,0 +1,86 @@
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+
+################# ALIASES #################
+
+# General
+alias cl=clear
+alias vim=nvim
+alias v=vim
+alias git=hub
+alias br=links
+alias cr=cargo
+alias pie=python3
+alias ipy=ipython
+alias lg=lazygit
+alias de=deactivate
+alias cat=prettybat
+alias bgrep=batgrep
+alias man=batman
+alias gl=glances
+alias sc=source
+alias task=dstask
+alias pdf=sioyek
+
+# Extensions
+alias lst="exa -l -h --tree --level=3 --sort=type -a --ignore-glob=\"node_modules|env|build|dist\""
+alias cpcomp="g++ -std=c++11 -o a __master.cpp && ./a"
+alias ls="exa -l -h -a --sort=modified --sort=type"
+alias lsn="exa -l -h --sort=name"
+alias pyde="conda activate spyder-env && spyder"
+alias cex="conda deactivate"
+alias javainfo="/usr/libexec/java_home -V"
+alias idea="open -na \"IntelliJ IDEA.app\" --args \"$@\""
+alias sioyek-keys="sioyek --execute-command keys_user"
+alias fbat="fzf --preview 'bat {-1} --color=always'"
+alias cpath="fbat | pbcopy"
+alias sbat="fbat --exec bat {}"
+alias gcopy="gpath | pbcopy"
+alias saf=open -a "Safari"
+alias ktheme="kitty +kitten themes --reload-in=all ${@}"
+alias tre="tmux rename-session ${@}"
+alias kll="pkill -f ${@}"
+alias val="alias | python3 $SCRIPTS/utils/viewaliases"
+
+# Retired
+# alias game="watch -n 0.1 sudo ifconfig awdl0 down"
+
+# Fast download copy/move
+alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
+alias cpdw='cp $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
+
+# Dotfiles
+alias zsc="source ~/.zshrc"
+alias nplugdir="cd ~/.config/nvim/lua/configs"
+alias nplug="vim ~/.config/nvim/lua/plugins.lua"
+alias vconf="vim ~/.vimrc"
+alias zconf="vim ~/.zshrc"
+alias bconf="vim ~/.bashrc"
+alias nconf="vim ~/.config/nvim/init.vim"
+
+# Dotfile backup
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias pconf="/usr/bin/git --git-dir=$HOME/.pcfg/ --work-tree=$HOME"
+alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && config push"
+
+# Competitive programming scripts
+alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
+alias fin="bash ~/documents/Code/Scripts/newfile.sh"
+
+# Scripts
+alias nmd="$SCRIPTS/pandoc_markdown.sh"
+alias bkp="$SCRIPTS/bkp_choose.sh"
+alias cecho="$SCRIPTS/utils/echo/echo.sh"
+
+# tmux scripts
+alias init_csm="$SCRIPTS/tmux/init_csm.sh"
+alias resume="$SCRIPTS/tmux/resume.sh"
+alias neetcode="$SCRIPTS/tmux/neetcode.sh"
+alias game="$SCRIPTS/tmux/game.sh"
+alias setup_hive="$SCRIPTS/tmux/hive.sh"
+alias linuxvm="sc $SCRIPTS/tmux/linuxvm.sh"
+
+# Compiled binaries
+alias ghidra="$GHIDRABIN"

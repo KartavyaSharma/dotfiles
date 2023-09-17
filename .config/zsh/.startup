@@ -5,6 +5,29 @@ bindkey ',,' autosuggest-execute
 bindkey ',m' autosuggest-accept
 bindkey ',.' autosuggest-clear
 
+source ~/.zplug/init.zsh # zplug '<author/pluginName>'
+
+# Source OH MY ZSH
+source $ZSH/oh-my-zsh.sh
+
+# fuck
+eval "$(thefuck --alias)"
+
+# Starship init
+eval "$(starship init zsh)"
+
+# Hub
+eval "$(hub alias -s)"
+
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# Bat preprocessor
+eval "$(batpipe)"
+
+# ...
+eval $(thefuck --alias fk)
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/kartavyasharma/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -21,13 +44,13 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # bun completions
-[ -s "/Users/kartavyasharma/.bun/_bun" ] && source "/Users/kartavyasharma/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # Bun
-export BUN_INSTALL="/Users/kartavyasharma/.bun"
+export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-[ -f "/Users/kartavyasharma/.ghcup/env" ] && source "/Users/kartavyasharma/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # Kitty Theme
 # eval "kitty @ set-colors -c $HOME/base16-kitty/colors/$(cat ~/.config/kitty/.base16_theme).conf"
