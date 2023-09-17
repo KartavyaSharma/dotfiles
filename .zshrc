@@ -9,46 +9,14 @@ export ZSH="/Users/kartavyasharma/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-tab autojump tmux)
 
-# Plugin vars
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_DEFAULT_SESSION_NAME="home"
+# Startup script file 
+source ~/.config/zsh/.startup
 
-source ~/.zplug/init.zsh
+# Environment variables 
+source ~/.config/zsh/.env
 
-# zplug 'wfxr/forgit'
+# Aliases
+source ~/.config/zsh/.alias
 
-# Source OH MY ZSH
-source $ZSH/oh-my-zsh.sh
-
-# fuck
-eval "$(thefuck --alias)"
-
-# Starship init
-eval "$(starship init zsh)"
-
-# Hub
-eval "$(hub alias -s)"
-
-# Zoxide
-eval "$(zoxide init zsh)"
-
-# Bat preprocessor
-eval "$(batpipe)"
-
-# ...
-eval $(thefuck --alias fk)
-
-############## LOADING ENV VARIABLES #######################
-# Sourcing environment variables
-source ~/.config/zsh/.env.sh
-############################################################
-
-############# IMPORTING STARTUP SCRIPTS ####################
-# Source script file
-source ~/.config/zsh/rcscripts.sh
-############################################################
-
-############## SOURCING ALIASES ############################
-# Sourcing aliases
-source ~/.config/zsh/aliases.zsh
-############################################################
+# Functions
+source ~/.config/zsh/.functions
