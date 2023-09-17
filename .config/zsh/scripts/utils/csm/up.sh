@@ -2,6 +2,10 @@
 
 main() {
     # Verify if required dependencies are present
+    if [[ "$1" =~ "--help" ]]; then
+        hp
+        exit 1
+    fi
     { [ ! -d 'csm_web' ] || [ ! -f 'package.json' ]; } && (mecho -c red -t 'You are in the wrong directory!\n' 1>&2) && exit 1
     if ! (command -v colima) >/dev/null && [[ ! "$@" =~ "--no-colima" ]]; then
         ( mecho -c yellow -t "Colima not found. It is reccomended to run this script with Colima. To install run: " )
