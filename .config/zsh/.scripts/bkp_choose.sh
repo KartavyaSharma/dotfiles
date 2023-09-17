@@ -2,7 +2,16 @@
 
 # Create key-value pair for file to path map
 declare -A FILES
-FILES+=( ["ZSH Configuration File"]="./.zshrc" ["Aliases"]="./.config/zsh/.alias" ["Scripts"]="./.config/zsh/.scripts" ["TMUX Conf"]="./.tmux.conf" ["Starship Configuration"]="./.config/starship.toml" ["Python & Brew Package Lists"]="./.config/misc" ["Kitty"]="./.config/kitty/kitty.conf" ["All"]="")
+FILES+=( 
+    ["ZSH Configuration File"]="./.zshrc" 
+    ["Core (alias, funcs, startup)"]="./.config/zsh/.alias ./.config/zsh/.functions ./.config/zsh/.startup" 
+    ["Scripts"]="./.config/zsh/.scripts" 
+    ["TMUX Conf"]="./.tmux.conf" 
+    ["Starship Configuration"]="./.config/starship.toml" 
+    ["Python & Brew Package Lists"]="./.config/misc" 
+    ["Kitty"]="./.config/kitty/kitty.conf" 
+    ["All"]=""
+)
 
 # Create array of associative keys for $(gum choose)
 declare -a FILE_OPTS 
