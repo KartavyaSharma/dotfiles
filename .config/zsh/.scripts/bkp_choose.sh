@@ -19,9 +19,9 @@ for FILE in "${!FILES[@]}"; do
     FILE_OPTS+=("$FILE")
 done
 
-echo "Choose file for backup:"
+echo "Choose scope for backup:"
 # Choose backup file
-FILE_PICK=$(gum choose "${FILE_OPTS[@]}")
+FILE_PICK=$(for FL in "${!FILES[@]}"; do echo $FL; done | gum filter --placeholder "ENTER SCOPE") # "${FILE_OPTS[@]}")
 
 gconf () {
     /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME "${@}"
