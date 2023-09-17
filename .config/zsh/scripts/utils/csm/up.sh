@@ -36,11 +36,9 @@ main() {
         ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
     fi
     # Main
-    usedocker=0
-    useforce=0
-    usereset=0
     # Check if any flags are passed
     { [ $# -eq 0 ]; } && (mecho -c red -t "Required flags not found!\n") && hp && exit 1
+    usedocker=0
     if [[ "$@" =~ "--no-colima" ]]; then
         { [ $# -eq 1 ]; } && mecho -c red -t "Missing flags! \`--no-colima\` requires \`--start | --kill | --reset\`\n" && hp && exit 1
         check_docker_desktop=$(ls /Applications/ | grep "Docker")
@@ -50,9 +48,11 @@ main() {
         fi
         usedocker=1
     fi
+    useforce=0
     if [[ "$@" =~ "--force" ]]; then
         useforce=1
     fi
+    usereset=0
     if [[ "$@" =~ "--reset" ]]; then
         { [ $# -eq 1 ]; } && mecho -c red -t "Missing flags! \`--reset\` requires \`--kill\`\n" && hp && exit 1
         usereset=1
@@ -84,6 +84,7 @@ main() {
             open http://localhost:8000/admin
             ( mecho -c yellow -t "To start virtual environment, run: " )
             echo -e "source \$(poetry env info --path)/bin/activate"
+            tmux send-keys -t "$(tmux display-message -p '#S')" "source \$(poetry env info --path)/bin/activate" C-m
             ;;
         -k | --kill) # Terminate
             if [ ! -f up.sh.tmp ]; then
@@ -111,6 +112,7 @@ main() {
                 ps ax | grep -i docker | egrep -iv 'grep|com.docker.vmnetd' | awk '{print $1}' | xargs kill
             fi
             rm ./up.sh.tmp
+            tmux send-keys -t "$(tmux display-message -p '#S')" "deactivate" C-m
             ;;
         -h | --help) # Help
             hp
