@@ -1,4 +1,7 @@
-########## Scripts to run on shell startup ##########
+########## Scripts to run on startup ##########
+
+# Which plugins would you like to load?
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-tab autojump tmux)
 
 # Autosuggestion conf
 bindkey ',,' autosuggest-execute
