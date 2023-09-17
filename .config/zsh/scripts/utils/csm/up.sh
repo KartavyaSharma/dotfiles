@@ -2,27 +2,33 @@
 
 main() {
     # Verify if required dependencies are present
+    # If only --help flag is passed, display help message and exit
     if [[ "$1" =~ "--help" ]]; then
         hp
         exit 1
     fi
+    # Check if user is in the correct directory
     { [ ! -d 'csm_web' ] || [ ! -f 'package.json' ]; } && (mecho -c red -t 'You are in the wrong directory!\n' 1>&2) && exit 1
+    # Check if colima is installed, ignore if --no-colima flag is passed
     if ! (command -v colima) >/dev/null && [[ ! "$@" =~ "--no-colima" ]]; then
         ( mecho -c yellow -t "Colima not found. It is reccomended to run this script with Colima. To install run: " )
         echo -e "brew install colima\n"
         echo -e -n "If you want to use this script without Colima, pass the \`--no-colima\` flag.\nThis script will then use Docker Desktop as a container runtime rather than Colima; However, Colima runs as a background process and is faster than Docker Desktop.\nIf you have already have Colima installed, restart your shell.\n"
         exit 1
+    # Check if docker is installed
     elif ! (command -v docker) >/dev/null; then
         ( mecho -c red -t 'You must have docker installed before running this script! (See https://www.docker.com)\n' 1>&2 )
         ( mecho -c yellow -t "If you don't want to install Docker Desktop, you can run: ")
         echo -e "brew install docker docker-compose"
         exit 1
+    # Check if docker configuration file exists
     elif [ ! -f "$HOME"/.docker/config.json ]; then
         mecho -c yellow -t "Did not find .docker/config.json file. Start Docker Desktop for the first time, or run \`colima start\` to auto generate the file.\n"
         exit 1
     # elif ( cat "$HOME"/.docker/config.json > /dev/null | grep "credsStore" ); then
     #     sed -i '' '/"credsStore"/d' "$HOME"/.docker/config.json
     fi
+    # Check if docker compose plugin symlink exists (only really important if installed with brew)
     check_compose=$(docker compose 2> >(grep -i "not"))
     if [[ $? -eq 1 ]]; then
         ( mecho -c yellow -t "Docker compose plugin symlink not found. Creating one...\n" )
@@ -33,6 +39,7 @@ main() {
     usedocker=0
     useforce=0
     usereset=0
+    # Check if any flags are passed
     { [ $# -eq 0 ]; } && (mecho -c red -t "Required flags not found!\n") && hp && exit 1
     if [[ "$@" =~ "--no-colima" ]]; then
         { [ $# -eq 1 ]; } && mecho -c red -t "Missing flags! \`--no-colima\` requires \`--start | --kill | --reset\`\n" && hp && exit 1
