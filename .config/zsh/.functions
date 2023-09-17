@@ -49,6 +49,11 @@ gdiff () {
     git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
+# Pick commit from git log
+getlog() {
+    glog | gum choose | awk '{print $2}'
+}
+
 # search directories globally or locally
 sd () {
     cecho -c green -t "Choose scope of search (default: Global (~) [fast])"
