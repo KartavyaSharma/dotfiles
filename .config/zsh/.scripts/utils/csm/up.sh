@@ -115,6 +115,23 @@ main() {
             rm ./up.sh.tmp
             tmux send-keys -t "$(tmux display-message -p '#S')" "deactivate" C-m
             ;;
+        -r | --restart)
+            if [ ! -f up.sh.tmp ]; then
+                mecho -c red -t "No active docker process detected!\n"
+                exit 1
+            fi
+            tmux send-keys -t "$(tmux display-message -p '#S')" "./up.sh --kill && ./up.sh --start" C-m
+            ;;
+        -L | --logs)
+            docker logs \
+                $(
+                    docker ps -a | grep \
+                        $(
+                            docker ps -a --format '{{.Names}}' | grep csm_web | gum filter --placeholder "Choose container"
+                        ) | awk '{print $1}'
+                ) |
+                bat
+            ;;
         -h | --help) # Help
             hp
             ;;
@@ -184,6 +201,8 @@ hp() {
     echo "Options:"
     echo "  -s | --start    [--no-colima]                       Start CSM docker runtime"
     echo "  -k | --kill     [--no-colima] [--reset] [--force]   Stop all docker runtime processes, and quit docker"
+    echo "  -L | --logs                                         Display docker logs for a CSM web container"
+    echo "  -r | --restart                                      Restart CSM docker runtime & containers"
     echo "  -h | --help                                         Display this help message"
 }
 
