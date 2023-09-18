@@ -11,14 +11,14 @@ main() {
     { [ ! -d 'csm_web' ] || [ ! -f 'package.json' ]; } && (mecho -c red -t 'You are in the wrong directory!\n' 1>&2) && exit 1
     # Check if colima is installed, ignore if --no-colima flag is passed
     if ! (command -v colima) >/dev/null && [[ ! "$@" =~ "--no-colima" ]]; then
-        ( mecho -c yellow -t "Colima not found. It is reccomended to run this script with Colima. To install run: " )
+        (mecho -c yellow -t "Colima not found. It is reccomended to run this script with Colima. To install run: ")
         echo -e "brew install colima\n"
         echo -e -n "If you want to use this script without Colima, pass the \`--no-colima\` flag.\nThis script will then use Docker Desktop as a container runtime rather than Colima; However, Colima runs as a background process and is faster than Docker Desktop.\nIf you have already have Colima installed, restart your shell.\n"
         exit 1
     # Check if docker is installed
     elif ! (command -v docker) >/dev/null; then
-        ( mecho -c red -t 'You must have docker installed before running this script! (See https://www.docker.com)\n' 1>&2 )
-        ( mecho -c yellow -t "If you don't want to install Docker Desktop, you can run: ")
+        (mecho -c red -t 'You must have docker installed before running this script! (See https://www.docker.com)\n' 1>&2)
+        (mecho -c yellow -t "If you don't want to install Docker Desktop, you can run: ")
         echo -e "brew install docker docker-compose"
         exit 1
     # Check if docker configuration file exists
@@ -31,7 +31,7 @@ main() {
     # Check if docker compose plugin symlink exists (only really important if installed with brew)
     check_compose=$(docker compose 2> >(grep -i "not"))
     if [[ $? -eq 1 ]]; then
-        ( mecho -c yellow -t "Docker compose plugin symlink not found. Creating one...\n" )
+        (mecho -c yellow -t "Docker compose plugin symlink not found. Creating one...\n")
         mkdir -p ~/.docker/cli-plugins
         ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
     fi
@@ -63,7 +63,7 @@ main() {
             { [ $useforce -eq 1 ]; } && mecho -c red -t "The \`--force\` flag can only be called given the \`--kill --no-colima\` flags. It is used to terminate all Docker Desktop processes.\n" && exit 1
             { [ -f up.sh.tmp ]; } && mecho -c red -t "Seems like the previous session is still running. Run ./up.sh --kill reset stale state.\n" && exit 1
             if [[ "$(docker info 2>&1)" =~ "Cannot connect to the Docker daemon" ]]; then
-                ( mecho -c yellow -t "Docker runtime not found. Starting...\n" )
+                (mecho -c yellow -t "Docker runtime not found. Starting...\n")
                 if [[ $usedocker -eq 0 ]]; then
                     colima start
                 else
@@ -73,18 +73,19 @@ main() {
                 fi
             fi
             echo -n "1" >>up.sh.tmp
-            if docker ps -a | grep -q csm_web; then
-                docker ps -a | grep csm_web | awk '{print $1}' | xargs -I{} docker start {} 2>&1 >/dev/null
+            # Check if csm_web container exists
+            check_csm_web=$(docker ps -a | grep csm_web)
+            if [[ $check_csm_web ]]; then
+                echo "$check_csm_web" | awk '{print $1}' | xargs -I{} docker start {} 2>&1 >/dev/null
                 sleep 5
             else
                 docker compose up -d
             fi
-            dexec python3 csm_web/manage.py createtestdata
-            dexec pytest csm_web
+            dexec python3 csm_web/manage.py createtestdata && dexec pytest csm_web
             open http://localhost:8000/admin
-            ( mecho -c yellow -t "To start virtual environment, run: " )
+            (mecho -c yellow -t "To start virtual environment, run: ")
             echo -e "source \$(poetry env info --path)/bin/activate"
-            tmux send-keys -t "$(tmux display-message -p '#S')" "source \$(poetry env info --path)/bin/activate" C-m
+            tmux send-keys -t "$(tmux display-message -p '#S')" "source \$(poetry env info --path)/bin/activate && code ." C-m
             ;;
         -k | --kill) # Terminate
             if [ ! -f up.sh.tmp ]; then
