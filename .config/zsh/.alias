@@ -23,9 +23,10 @@ alias gl=glances
 alias sc=source
 alias task=dstask
 alias pdf=sioyek
+alias lctl=limactl
 
 # Extensions
-alias lst="exa -l -h --tree --level=3 --sort=type -a --ignore-glob=\"node_modules|env|build|dist\""
+alias lst="exa -l -h --tree --level=3 --sort=type -a --ignore-glob=\"node_modules|env|build|dist|.git\""
 alias cpcomp="g++ -std=c++11 -o a __master.cpp && ./a"
 alias ls="exa -l -h -a --sort=modified --sort=type"
 alias lsn="exa -l -h --sort=name"
