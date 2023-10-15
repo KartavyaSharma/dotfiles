@@ -24,6 +24,7 @@ alias sc=source
 alias task=dstask
 alias pdf=sioyek
 alias lctl=limactl
+alias ask=senpai
 
 # Extensions
 alias lst="exa -l -h --tree --level=3 --sort=type -a --ignore-glob=\"node_modules|env|build|dist|.git\""
@@ -44,9 +45,12 @@ alias ktheme="kitty +kitten themes --reload-in=all ${@}"
 alias tre="tmux rename-session ${@}"
 alias kll="pkill -f ${@}"
 alias val="alias | python3 $SCRIPTS/utils/viewaliases"
+alias ubuntu="ssh ubuntu@orb"
 
 # Retired
 # alias game="watch -n 0.1 sudo ifconfig awdl0 down"
+# alias txns="tmux new -d -s $(gum input --placeholder='Enter TMUX Session Name')"
+# alias txds="tmux list-sessions -F \#S | gum choose --no-limit | xargs -I{} tmux kill-session -t {} >/dev/null"
 
 # Fast download copy/move
 alias mvdw='mv $(fd --absolute-path --base-directory ~/Downloads/ | fzf) .'
@@ -67,8 +71,8 @@ alias pconf="/usr/bin/git --git-dir=$HOME/.pcfg/ --work-tree=$HOME"
 alias bkpz="cd && config add .zshrc && config commit -m \"Updated .zshrc\" && config push"
 
 # Competitive programming scripts
-alias fresh="bash ~/documents/Code/Scripts/fresh_space.sh"
-alias fin="bash ~/documents/Code/Scripts/newfile.sh"
+alias fresh="bash ${DOCS}/Code/Scripts/fresh_space.sh"
+alias fin="bash ${DOCS}/Code/Scripts/newfile.sh"
 
 # Scripts
 alias nmd="$SCRIPTS/pandoc_markdown.sh"
